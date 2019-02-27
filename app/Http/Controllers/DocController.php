@@ -37,13 +37,14 @@ class DocController extends Controller
 
      public function report($id)
     {
-         // $dataActual = date('Y-m-d');
+         $dataActual = date('Y-m-d');
   
          $certifyc = Certificadoclasse::find($id);
           $esqm = Esquema::find($certifyc->esquema_id);
           $contrato = Contrato::find($esqm->contrato_id);
-          $fabrica = Fabrica::find($contrato->fabrica_id);
-            $view = View('certifyn.report', compact('certifyc','esqm','contrato','fabrica'));
+          $fabri = Entidade::find($contrato->entidade_id);
+          $fabrica = User::find($fabri->user_id);
+            $view = View('certifyn.report', compact('certifyc','esqm','contrato','fabrica','fabri','dataActual'));
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view->render());
             return $pdf->stream();
@@ -92,6 +93,13 @@ class DocController extends Controller
      $nacional = Certificadonacional::find($certifyc->nacionals_id);
      $nacio = Certificadoclasse::find($nacional->certif_id);
      $esk = DB::table('esquemas')->where('contrato_id',$nacional->contrato_id)->get();
+     // $esk = DB::table('esquemas')->where();
+
+
+     // echo $nacional->contrato_id;
+     // exit;
+
+
      $view = View('fatura.report', compact('certifyc','nacional','esk'));
      $pdf = \App::make('dompdf.wrapper');
      $pdf->loadHTML($view->render());

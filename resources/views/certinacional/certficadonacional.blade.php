@@ -1,5 +1,5 @@
-
-@extends('master')
+{{-- @extends('master') --}}
+@extends('layouts.index')
 @section('content')
 
 
@@ -9,28 +9,24 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
              
-               <div class="form-element-list" id="id_bee">            
+            <div class="form-element-list" id="id_bre">            
+             <h1 style="margin-top: -15px;">Geracão de Certificados de Origem Nacional</h1>
+                <div class="form-element-list" id="id_bee">            
             
-            <h1 style="margin-top: -15px;">Geracão de Certificados de Origem Nacional</h1>
+            
              <form class="form-horizontal  bee"  method="POST"">
                                     {{ csrf_field() }}
 
-{{-- 
-  <input type="hidden" name="estado"  value="homologado">
-  <input type="hidden" name="fabrica_id" value="{!!$fabrica_id !!}"> --}}
+           <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: none;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Certificados Nacional criado com sucesso!</strong>
+           </div>
 
-        <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: none;">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Certificados de Origem e Classificacao criado com sucesso!</strong>
-   </div>
-   <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_erro" style="display: none;" >
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Problemas na criacao de Certificado!</strong>
-   </div>
-    
+           <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_erro" style="display: none;" >
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Problemas na criacao de Certificado!</strong>
+           </div>
 
-
-
-
-     <div class="row">
+                    
+                    <div class="row">
                     
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="form-group ic-cmp-int">
@@ -100,15 +96,15 @@
                                 {{-- <i class="notika-icon notika-phone"></i> --}}
                             </div>
                             <div class="nk-int-st">
-                               <input type="text" class="form-control" name="pesobruto" placeholder="Peso Bruto" value="{{ old('pesobruto') }}" required autofocus>
+                               <input type="text" class="form-control" name="pesobruto" placeholder="Peso bruto" value="{{ old('pesobruto') }}" required autofocus>
                             </div>
                         </div>
                     </div>
 
-                   {{--   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="form-group ic-cmp-int">
                             <div class="form-ic-cmp">
-                                <i class="notika-icon notika-mail"></i>
+                                {{-- <i class="notika-icon notika-mail"></i> --}}
                             </div>
                             <div class="nk-int-st">
                                <input  type="text" class="form-control" placeholder="Peso bruto" name="pesobruto">
@@ -117,28 +113,27 @@
 
                             </div>
                         </div>
-                      </div> --}}
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                      </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="form-group ic-cmp-int">
                             <div class="form-ic-cmp">
                             {{-- <i class="notika-icon notika-support"></i> --}}
                              </div>
                             <div class="nk-int-st">
-                                 <input type="text" class="form-control" name="pesoliq" placeholder="Peso Líquido" value="{{ old('pesoliq') }}">          
+                                 <input type="text" class="form-control" name="pesoliq" placeholder="Peso Liquido" value="{{ old('pesoliq') }}">          
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                        <div class="form-group ic-cmp-int">
                             <div class="form-ic-cmp">
                             {{-- <i class="notika-icon notika-support"></i> --}}
                              </div>
                             <div class="nk-int-st">
-                              <input type="text" name="marcafardo"  class="form-control" placeholder="Marca do Fardo" value="{{ old('marcafardo') }}">                 
+                              <input type="text" name="marcafardo"  class="form-control" placeholder="Marca de fardo" value="{{ old('marcafardo') }}">                 
                             </div>
                         </div>
                   </div>
@@ -159,8 +154,11 @@
                     </div>
                     </div>
                  </form>
-   
+              </div>
+          
             </div>
+
+        
             </div>
         </div>
         </div>
@@ -168,7 +166,6 @@
 </div>
 
 @endsection
-
 
 @section('scripts')
 <script type="text/javascript">

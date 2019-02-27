@@ -16,9 +16,17 @@ use DB;
 class EsquemaController extends Controller
 {
     public function geraracao(Request $request){ 
+       $der = Esquema::all()->count();
+       if ($der > 40 ) {
+         $c = Esquema::take(10)->get(); //deletar um numero espesifico de linhas//
+             foreach ($c as $cc)   //ciclo para deletar um numero espesifico de linhas//
+            DB::table('esquemas')->where('id',$cc->id)->delete(); //method deletar as linhas//
 
+       }
+        
      $act = $request['adi'];
-  
+     $fr = $request['adia'];
+     
       
                  $f = explode(',', $act);
 
@@ -94,8 +102,9 @@ class EsquemaController extends Controller
                   
                   }
 
-                    Esquema::query()->create(['tipo' =>$request['tipo'],'nrcertific' => $request['nrcertific'],'quantfardo' => $request['quantidade'],'comprimentofibra' => $request['comprimentofibra'],'nrocorespond' => $request['nrocorespond'],'pesobruto' => $request['pesobruto'],'lote' => $request['lote'],'nrcertific' => $request['nrcertific'],'entidade_id' => $request['entidade_id'],'contrato_id' => $request['contrato_id'],
+        Esquema::query()->create(['tipo' =>$request['tipo'],'nrcertific' => $request['nrcertific'],'quantfardo' => $request['quantidade'],'comprimentofibra' => $request['comprimentofibra'],'nrocorespond' => $request['nrocorespond'],'pesobruto' => $request['pesobruto'],'lote' => $request['lote'],'nrcertific' => $request['nrcertific'],'entidade_id' => $request['entidade_id'],'contrato_id' => $request['contrato_id'],
                       'pesoliq' => $libra,
+                      'lista' => $fr,
                       'libraspeso'=> $librado,
                       'valortotal'=>$valortotal,
                       'iampercent'=> $iampercent]);
@@ -129,11 +138,27 @@ class EsquemaController extends Controller
        $tip= $request['tipo'];
 
         $user = Auth()->user();
-       $entidade_id = Entidade::query()->where('user_id',$user->id)->first()->id;
-      $fun = Funcionario::query()->join('entidades','funcionarios.entidade_id','funcionarios.id')
-      ->where('funcionarios.entidade_id',$entidade_id)->get();
 
-     $cl= Classificacao::query()->where('lote','=',$lote)->where('tipo',$tip)->where('estadovend','=','nv')->where('entidade_id','=', $entidade_id)->limit($q)->get()->count();
+
+      //  $entidade_id = Entidade::query()->where('user_id',$user->id)->first()->id;
+      // $fun = Funcionario::query()->join('entidades','funcionarios.entidade_id','funcionarios.id')
+      // ->where('funcionarios.entidade_id',$entidade_id)->get();
+
+        // $user = Auth()->user();
+
+        if ($user->nivel != 1) {
+          $entidade_id = Entidade::query()->where('user_id',$user->id)->first()->id;
+          $fa = Fabrica::query()->where('entidade_id',$entidade_id)->first()->id;
+        }elseif ($user->nivel == 1) {
+
+          
+        $fun = Funcionario::query()->where('user_id',$user->id)->first()->entidade_id;
+         $r = Entidade::query()->where('id',$fun)->first()->id;
+         $fa = Fabrica::query()->where('id',$r)->first()->id;
+
+        }
+
+     $cl= Classificacao::query()->where('lote','=',$lote)->where('tipo',$tip)->where('estadovend','=','nv')->limit($q)->get()->count();
 
 if ($cl < $q) {
 
@@ -146,7 +171,7 @@ if ($cl < $q) {
           } 
 
         } else {
- $cl= Classificacao::query()->where('lote','=',$lote)->where('tipo',$tip)->where('entidade_id','=', $entidade_id)->limit($q)->get();
+ $cl= Classificacao::query()->where('lote','=',$lote)->where('tipo',$tip)->limit($q)->get();
  
        return response()->json(array('dados'=>$cl, 'z'=>1));
 

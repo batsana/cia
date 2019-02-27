@@ -82,7 +82,7 @@ Route::get('/registar/etiqueta', function () {
 
 
 
-$ultmo = Getiqueta::query()->orderBy('id','desc')->first()->inetervalo;
+
 
 	$user = Auth()->user();
 	$entidade = Entidade::query()
@@ -94,10 +94,13 @@ $ultmo = Getiqueta::query()->orderBy('id','desc')->first()->inetervalo;
  if ($user->nivel !== 1) {
    //  $us = Fabrica::query('user_id',$user->id)->first()->id;
       $fabrica_id = Fabrica::query()->where('user_id',$user->id)->first()->id;
+      // $ultmo = Getiqueta::query()->orderBy('id','desc')->first()->inetervalo;
+       $ultmo = Getiqueta::query()->where('fabrica_id',$fabrica_id)->first()->inetervalo;
    }elseif ($user->nivel == 1) {
  
     $funcionarios =  DB::table('funcionarios')->where('user_id',$user->id)->first()->entidade_id;
     $fabrica_id = Fabrica::query('id',$funcionarios)->first()->id; 
+     $ultmo = Getiqueta::query()->where('fabrica_id',$fabrica_id)->first()->inetervalo;
    }
 
 return view('etiqueta.create',compact('entidade','fabrica_id','ultmo'));	
@@ -131,11 +134,11 @@ Route::get('/listar/etiqueta', function () {
 
 
 Route::get('/listar/classes', function () {
-		$user = Auth()->user()->id;
-   // $classificacaos = Classificacao::query()->paginate(10);
-   $classificacaos = Classificacao::query()
-   ->join('entidades','classificacaos.entidade_id','entidades.id')
-   ->where('classificacaos.entidade_id',$user)->paginate(10);
+		// $user = Auth()->user()->id;
+   $classificacaos = Classificacao::query()->paginate(10);
+   // $classificacaos = Classificacao::query()
+   // ->join('entidades','classificacaos.entidade_id','entidades.id')
+   // ->where('classificacaos.entidade_id',$user)->paginate(10);
 
            
    return view('classificacao.indexre', compact('classificacaos'));;
@@ -171,6 +174,7 @@ Route::post('/salvaesquema','EsquemaController@geraracao');
 Route::post('/salvafatura','FaturaController@criar');
 
 Route::post('/salvacertclass','CertificadoclasseController@criar');
+// Route::post('/salvacertnacional','CertificadonacionalController@criar');
 Route::post('/salvacertnacional','CertificadonacionalController@criar');
 
 Route::post('/salvamos','FabricaController@store');  ////////////////////////////////

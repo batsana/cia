@@ -32,13 +32,16 @@
             <div class="form-ic-cmp">
             {{-- <i class="notika-icon notika-support"></i> --}}
              </div>
-            <div class="nk-int-st">
+          {{--   <div class="nk-int-st">
                  <input id="numerofardo" type="text" class="form-control" name="numerofardo" placeholder="Numero do fardo" value="{{ old('numerofardo') }}" required autofocus>
 
                         @if ($errors->has('numerofardo'))
                             <span class="help-block"><strong>{{ $errors->first('numerofardo') }}</strong></span>
                         @endif                     
             </div>
+ --}}              <div class="nk-int-st">
+               <input type="text" class="form-control" name="barcod" placeholder="Código de Barras" value="{{ old('barcod') }}" required autofocus>
+        </div>
         </div>
     </div>
 
@@ -48,7 +51,7 @@
                 {{-- <i class="notika-icon notika-mail"></i> --}}
             </div>
             <div class="nk-int-st">
-               <input id="grau" type="text" class="form-control" name="grau" placeholder="grau" value="{{ old('grau') }}" required autofocus>
+               <input id="grau" type="text" class="form-control" name="grau" placeholder="Grau" value="{{ old('grau') }}" required autofocus>
             </div>
         </div>
     </div>
@@ -59,7 +62,7 @@
                 {{-- <i class="notika-icon notika-phone"></i> --}}
             </div>
             <div class="nk-int-st">
-                <label>Safra</label>
+                <label>Campanha</label>
              
             </div>
         </div>
@@ -73,7 +76,7 @@
             {{-- <i class="notika-icon notika-support"></i> --}}
              </div>
             <div class="nk-int-st">
-                 <input id="pesolik" type="text" class="form-control" name="pesolik" placeholder="Peso Liquido" value="{{ old('pesolik') }}" required autofocus>                    
+                 <input id="pesolik" type="text" class="form-control" name="pesolik" placeholder="Peso Líquido (Kg)" value="{{ old('pesolik') }}" required autofocus>                    
             </div>
         </div>
     </div>
@@ -84,7 +87,7 @@
                 {{-- <i class="notika-icon notika-mail"></i> --}}
             </div>
             <div class="nk-int-st">
-               <input id="pesobru" type="text" class="form-control" name="pesobru" placeholder="pesobru" value="{{ old('pesobru') }}" required autofocus>
+               <input id="pesobru" type="text" class="form-control" name="pesobru" placeholder="Peso Bruto (Kg)" value="{{ old('pesobru') }}" required autofocus>
             </div>
         </div>
     </div>
@@ -125,9 +128,9 @@
             <div class="form-ic-cmp">
                 {{-- <i class="notika-icon notika-mail"></i> --}}
             </div>
-            <div class="nk-int-st">
-               <input type="text" class="form-control" name="barcod" placeholder="Codigo de barra" value="{{ old('barcod') }}" required autofocus>
-        </div>
+           <div class="nk-int-st">
+              <input id="lote" type="text" class="form-control" name="lote" placeholder="Número de Lote" value="{{ old('lote') }}" required autofocus>
+            </div>
     </div>
   </div>
   
@@ -137,27 +140,24 @@
            
             </div>
             <div class="nk-int-st">
-          <input id="sacha" type="date" class="form-control" name="sacha1" placeholder="safra" value="{{ old('comprimento') }}" required autofocus> 
+          <input id="sacha" type="date" class="form-control" name="sacha1" placeholder="Campanha" value="{{ old('comprimento') }}" required autofocus> 
             </div>
         </div>
     </div>
 </div>
-    
-
-          
-   <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<div class="row">
+   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="form-group ic-cmp-int">
             <div class="form-ic-cmp">
-                {{-- <i class="notika-icon notika-phone"></i> --}}
+           
             </div>
             <div class="nk-int-st">
-              <input id="lote" type="text" class="form-control" name="lote" placeholder="Numero do Lote" value="{{ old('lote') }}" required autofocus>
+          <input id="lista" type="text" class="form-control" name="lista" placeholder="Número de Lista" value="{{ old('comprimento') }}"> 
             </div>
         </div>
-    </div>  
-    
-</div> 
+    </div>
+</div>
+
 
 <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -166,7 +166,7 @@
            
             </div>
             <div class="nk-int-st">
-          <button type="submit" class="button-alt grayb" >Enviar</button>  
+          <button type="submit" class="button-alt grayb">Enviar</button>  
             </div>
         </div>
     </div>
@@ -211,6 +211,10 @@
             },
 
              error:function(result){
+     // console.log(result);
+     // return;
+
+
                $('#id_erro').show();
                setTimeout(function(){
                 $('.id_erro').fadeOut(4000);

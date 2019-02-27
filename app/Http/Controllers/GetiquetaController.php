@@ -17,19 +17,20 @@ use Auth;
 class GetiquetaController extends Controller
 {
     public function create(Request $data){
-       
-         $ultmo = Getiqueta::query()->orderBy('id','desc')->first()->inetervalo;
-
+            $p = $data['fabrica_id'];
+         $ultmo = Getiqueta::query()->where('fabrica_id',$p)->first()->inetervalo;
+        // echo $ultmo;
+        // exit;
         $last = $data['inetervalo'];
         $latest = $last + $ultmo;
         // se o numero do intervalo for superior ao limite estabelecido///////////////////////////////// recomecar a contagem . 
             $u = $latest;
-        if ($latest > 3000) {
-          $la  = $u - 3000;
+        if ($latest > 5000) {
+          $la  = $u - 5000;
 
            // echo $latest;
            // exit; 
-          $c = Classificacao::take(1)->get(); //deletar um numero espesifico de linhas//
+          $c = Classificacao::take(2500)->get(); //deletar um numero espesifico de linhas//
              foreach ($c as $cc)   //ciclo para deletar um numero espesifico de linhas//
             DB::table('classificacaos')->where('id',$cc->id)->delete(); //method deletar as linhas//
             // echo "  todos objectos eliminados " ;
@@ -84,7 +85,7 @@ class GetiquetaController extends Controller
       }
         }
          
-}
+     }
 
     public function index(){
     	 $cla = Getiqueta::all();

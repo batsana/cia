@@ -75,8 +75,8 @@
             <div class="form-ic-cmp">
             </div>
             <div class="nk-int-st">
-               <table><tr><td style="color: #ababab; font-size: 14px; padding-right:5px;">Comprimento da Fibra: </td><td><input style="width: 97%" type="number" disabled value="0" disabled class="form-control" placeholder="Comprimento da Fibra" id="compi">
-               <input type="hidden" value="0" name="comprimentofibra" id="compis"  class="form-control" placeholder="Comprimento da Fibra"></td></tr></table>
+               <table><tr><td style="color: #ababab; font-size: 14px; padding-right:5px;">Comprimento da Fibra: </td><td><input style="width: 97%" type="number" disabled value="0" disabled class="form-control" placeholder="Comprimento da Fibra" id="compia">
+               <input type="hidden" value="0" name="comprimentofibra" id="compisa"  class="form-control" placeholder="Comprimento da Fibra"></td></tr></table>
                
             </div>
         </div>
@@ -157,7 +157,7 @@
                     <input type="hidden" name="nrcertific" class="form-control"  id="list">
                     <input id="classificacao_id" name="classificacao_id" type="hidden" value="">
 
-                    <input id="adicionados3"  type="hidden" value="">
+                    {{-- <input id="list"  type="hidden" value=""> --}}
                    
             </div>
         </div>
@@ -167,8 +167,9 @@
             <div class="form-ic-cmp">
              </div>
             <div class="nk-int-st">
-               
-              <button type="button" id="adicao" class="button-alt grayb" >Adicionar Fardo(s)</button>
+                {{-- <input id="adia"  type="text" name="lista" value=""> --}}
+           <input id="adia" name="adia" type="hidden" value="">
+              <button type="button" id="adicao" class="button-alt grayb">Adicionar Fardo(s)</button>
             </div>
         </div>
     </div>
@@ -265,6 +266,7 @@
             $('#list').val($('#list').val()+", "+results.dados[i].lista);
             $('#adicionados2').val($('#adicionados2').val()+", "+results.dados[i].barcod);
             $('#adicionados3').val($('#adicionados3').val()+", "+results.dados[i].barcod);
+            // $('#adicionarlista').val($('#adicionarlista').val()+", "+results.dados[i].lista);
 
 
 
@@ -276,12 +278,14 @@
             // $('#adi').val(substrVal4);
 
             $('#adi').val($('#adi').val()+","+results.dados[i].id);
+            $('#adia').val($('#adia').val()+"/"+results.dados[i].lista);
 
 
 
             $('#pesoliq2').val(parseFloat($("#pesoliq2").val())+parseFloat(results.dados[i].pesolik));
-            $('#compi').val(parseFloat($("#compi").val())+parseFloat(results.dados[i].comprimento));
-            $('#compis').val(parseFloat($("#compis").val())+parseFloat(results.dados[i].comprimento));
+            $('#pesoliq2').val(parseFloat($("#pesoliq2").val())+parseFloat(results.dados[i].pesolik));
+            $('#compia').val(parseFloat($("#compia").val())+parseFloat(results.dados[i].comprimento));
+            $('#compisa').val(parseFloat($("#compisa").val())+parseFloat(results.dados[i].comprimento));
 
 
             $('#pesoliq').val(parseFloat($("#pesoliq").val())+parseFloat(results.dados[i].pesolik));
@@ -318,7 +322,7 @@
             dataType:'json',
             data:form.serialize(),
             success:function(result){
-              // console.log(result);
+              console.log(result);
               if (result.is_valid){
                   
                $('#id_sucesso').show();
@@ -327,7 +331,7 @@
               
 
               if (result.quantia){
-
+               console.log(result);
                $('#id_erro').html('<p>Verifique o estado do contrato selecionado</p>')
                $('#id_erro').show();
                setTimeout(function(){
@@ -337,7 +341,7 @@
 
             
               if (result.statusa){
-                // console.log(result);
+                console.log(result);
                $('#id_erro').html('<p>O presente Contrato contem faturas não pagas</p>')
                $('#id_erro').show();
                setTimeout(function(){
@@ -348,12 +352,12 @@
             },
 
             error:function(result){
-              // console.log(result);
-             $('#id_erro').html('<p>Problemas na Geração do Esquema de Embarque</p>')
-               $('#id_erro').show();
-               setTimeout(function(){
-                $('.id_erro').fadeOut(4000);
-               });
+              console.log(result);
+             // $('#id_erro').html('<p>Problemas na Geração do Esquema de Embarque</p>')
+             //   $('#id_erro').show();
+             //   setTimeout(function(){
+             //    $('.id_erro').fadeOut(4000);
+             //   });
             }
            });
            

@@ -83,13 +83,22 @@
         </div>
     </div>
 
-                  <input type="text" name="fabrica_id" value="{!!$fabrica_id !!}">
+                  <input type="hidden" name="fabrica_id" value="{!!$fabrica_id !!}">
                 </form>
             </div>
+
+            
+
         </div>
         </div>
     </div>
 </div>
+
+<div class="row" style="padding: 0 20px 0 20px">
+  <div class="alert alert-warning"><strong>Atenção:</strong> Esta operação poderá durar algum tempo caso o número de série atinja 5000.</div>
+</div>
+
+
 </div>
     </div>
  

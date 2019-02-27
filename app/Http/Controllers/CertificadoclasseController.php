@@ -6,19 +6,18 @@ use Illuminate\Http\Request;
 use App\Certificadoclasse;
 use DB;
 use PDF;
+use App\Esquema;
 
 class CertificadoclasseController extends Controller
 {
       public function criar(Request $data){
-        $dados;
+    
           Certificadoclasse::query()->create(['quantestenso' => $data['quantestenso'],'marcafardo' => $data['marcafardo'],'quantfardo' => $data['quantfardo'],'navio' => $data['navio'],'destino' => $data['destino'],'pesobruto' => $data['pesobruto'],'pesoliq' => $data['pesoliq'],'classif_id' => $data['classif_id'],'esquema_id' => $data['esquema_id']]);
 
-   $dados['good']=true;
 
-    // return response()->json(['good' => true ]);
 
-   return value ($dados);
-      
+     return redirect('/gestao/cetificate')->with('resultado', 'Certificado gerado com sucesso com sucesso.'); 
+       
 
     }
 

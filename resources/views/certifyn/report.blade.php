@@ -139,11 +139,11 @@
 
     <tr>
         <td style="border:none"><strong>Origem dos fardos :</strong></td>
-        <td style="border:none">{{$fabrica->nome}}/{{$fabrica->province}}</td>
+        <td style="border:none">{{$fabrica->nome}}/{{$fabri->province}}</td>
     </tr> 
      <tr>
         <td style="border:none"><strong>Estalacao fabril onde foi enfardo :</strong></td>
-        <td style="border:none">{{$fabrica->endereco}}/{{$fabrica->telefone}}</td>
+        <td style="border:none">{{$fabri->endereco}}/{{$fabri->telefone}}</td>
     </tr> 
     <tr>
         <td style="border:none"><strong>Navio de Embarque :</strong></td>

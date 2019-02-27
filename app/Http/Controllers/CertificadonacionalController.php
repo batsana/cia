@@ -18,6 +18,8 @@ class CertificadonacionalController extends Controller
      */
    
         public function criar(Request $data){
+           // $g = Certificadonacional::query()->where('')
+
         $dados;
         
           Certificadonacional::query()->create(['marcafardo' => $data['marcafardo'],'quantfardo' => $data['quantfardo'],'destino' => $data['destino'],'pesobruto' => $data['pesobruto'],'pesoliq' => $data['pesoliq'],'certif_id' => $data['certif_id'],'contrato_id' => $data['contrato_id']]);
@@ -37,6 +39,7 @@ class CertificadonacionalController extends Controller
         $sent = Certificadoclasse::find($id);
   $contrato = Contrato::all();
       return view('certinacional.certficadonacional',compact('sent','contrato'));
+      
 
     }
 

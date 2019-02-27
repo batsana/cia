@@ -13,8 +13,17 @@ class ClassificacaoController extends Controller
  /////////////////////////////////////////////////////////////////////////////////////////////////////  
     protected function create(Request $data){
     
-      $dados;
- Classificacao::query()->create(['barcod' => $data['barcod'],'numerofardo' => $data['numerofardo'],'grau' => $data['grau'],'pesolik' => $data['pesolik'],'pesobru' => $data['pesobru'],'fabrica_id'=>$data['fabrica_id'],'entidade_id'=>$data['entidade_id'],'lote'=>$data['lote'],'sacha' => $data['sacha'],'sacha1' => $data['sacha1']]);
+     
+ $dados;
+     // $nrfa = strlen($data['barcod']);
+
+    $nrFardo =substr($data['barcod'], 13,6);
+    $nrFardo = ltrim($nrFardo);
+    
+
+
+
+ Classificacao::query()->create(['barcod' => $data['barcod'],'lista' => $data['lista'],'numerofardo' => $nrFardo,'grau' => $data['grau'],'pesolik' => $data['pesolik'],'pesobru' => $data['pesobru'],'fabrica_id'=>$data['fabrica_id'],'entidade_id'=>$data['entidade_id'],'lote'=>$data['lote'],'sacha' => $data['sacha'],'sacha1' => $data['sacha1']]);
   $dados['is_valid']=true;
 
  return value($dados);
