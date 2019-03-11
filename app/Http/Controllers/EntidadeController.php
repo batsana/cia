@@ -14,26 +14,12 @@ class EntidadeController extends Controller
 //////////////////////////////apagar grafica
    public function apagar($id){
    DB::table('entidades')->where('id',$id)->delete();
-   
-   $user = Auth()->user();
-  $entidade = Entidade::query()
-  ->join('users','entidades.user_id','=','users.id')
-    ->where('users.tipoEntidade','=','laboratorio')
-    ->select('users.name','entidades.*')->get();
-return view('iam.labora',compact('entidade'));  
-
+  return redirect('/listar/laboratorio')->with('resultado', 'Laboratorio Apagado com sucesso.');
 }
 
  public function apagargra($id){
    DB::table('entidades')->where('id',$id)->delete();
-
-
-$user = Auth()->user();
-  $entidade = Entidade::query()
-  ->join('users','entidades.user_id','=','users.id')
-    ->where('users.tipoEntidade','=','grafica')
-    ->select('users.name','entidades.*')->get();
-return view('iam.grafica',compact('entidade')); 
+return redirect('/listar/grafica')->with('resultado', 'Dados Apagados com sucesso.');
 
 }
 
@@ -44,18 +30,14 @@ return view('iam.grafica',compact('entidade'));
 public function apagarComp($id){
    DB::table('entidades')->where('id',$id)->delete();
 
-
-return view('iam.home',compact('entidade'));
+return redirect('/listar/algudoeira')->with('resultado', 'Dados Apagados com sucesso.'); 
 }
 
 public function apagariam($id){
    DB::table('entidades')->where('id',$id)->delete();
+   return redirect('/listar/iam')->with('resultado', 'Dados Apagados com sucesso.');
 
- $entidade = Entidade::query()
-  ->join('users','entidades.user_id','=','users.id')
-    ->where('users.tipoEntidade','=','iamprovincial')
-    ->select('users.*','entidades.*')->paginate(10);
-return view('iam.iam',compact('entidade'));
+
 }
 
 ////////////////////edicao da companhia/////****laboratorio
@@ -109,7 +91,7 @@ return view('iam.iam',compact('entidade'));
 
 
 public function updategra(Request $request,$id){
-  $resultado = "good";
+ 
        $ent = Entidade::find($id);
         $user = User::find($ent->user_id);
 
@@ -119,13 +101,7 @@ public function updategra(Request $request,$id){
 
         $user->update();
         $ent->update();
- 
-          $user = Auth()->user();
-  $entidade = Entidade::query()
-  ->join('users','entidades.user_id','=','users.id')
-    ->where('users.tipoEntidade','=','grafica')
-    ->select('users.name','entidades.endereco','entidades.numerunico','entidades.telefone')->paginate(10);
-return view('iam.grafica',compact('entidade','user','resultado'));     
+      return redirect('/listar/grafica')->with('resultado', 'Dados Atualizados com sucesso.');
         }
 
 
@@ -155,13 +131,7 @@ $resultado = "good";
         $user->update();
 
 
- 
-          $user = Auth()->user();
-      $entidade = Entidade::query()
-      ->join('users','entidades.user_id','=','users.id')
-        ->where('users.tipoEntidade','=','laboratorio')
-        ->select('users.name','entidades.*')->get();
-    return view('iam.labora',compact('entidade','user','resultado'));        
+ return redirect('/listar/laboratorio')->with('resultado', 'Dados Atualizados com sucesso.');        
         }
 
 

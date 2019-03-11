@@ -57,11 +57,6 @@
   </div>
    <h1 align="center" style="color:#df822a; padding-bottom:10px; text-align: left">Validação de Resultados de classificação por HVI</h1>
 
-  {{--  <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso_vazios" style="display: none;">
-          <button type="button"  class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Não existem funcionarios resistados no sistema.</strong>
-        </div>
- --}}
-
         <div class="alert alert-success alert-dismissible id_sucesso" id="id_sucesso_vazios" style="display: none; margin-bottom: 20px">
          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
             </div>
@@ -105,6 +100,12 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1>Resultados da Classificação de Amostras por HVI</h1>
+
+                @if (session('resultado'))
+              <div class="alert alert-success" id="message">
+              {{ session('resultado') }}
+               </div>
+             @endif
           
                 <div class="table-responsive">
               <table class="table table-sc-ex">
@@ -140,18 +141,19 @@
                           <td>{{$clas->rd}}</td>
                           <td>{{$clas->b}}</td>                 
                            <td> 
-                          
-                               <button data-prim="{{$clas->id}}" id="envData" type="button"  class="button-alt grayb refuse">Aceitar</button>
+ 
+                        <button data-prim="{{$clas->id}}" id="envData" type="button"  class="button-alt grayb refuse hr">Aceitar</button>
 
+                        <button data-prim2="{{$clas->id}}" id="envData2" type="button"  class="button-alt grayb refuse rh">Recusar</button>
 
-                               <button data-prim2="{{$clas->id}}" id="envData2" type="button"  class="button-alt refuse">Recusar</button>
+                         <a href="/hviii/{{$clas->id}}" ><button  class="button-alt refuse">X</button></a>
 
                            </td>              
                           </tr>
                          @endforeach         
                     </tbody>
                  </table>
-                 <h5 class="text-center">{{ $classicacaos->links() }}</h5>
+               <h5 class="text-center">{{ $classicacaos->links() }}</h5>
               </div>
           </div>
         </div>
@@ -168,16 +170,20 @@
 
       $(document).ready(function(){
 
-         $('#envData2').click(function (e) {
-          etiq_id2 = $('#envData2').attr('data-prim2');          
+      	setTimeout(function(){
+                $('#message').fadeOut(7000);
+               });
+
+         $('.rh').click(function (e) {
+          etiq_id2 = $('.rh').attr('data-prim2');          
           $('#etiqueta_id2').val(etiq_id2);
             $('#umoda2').modal({
               show: true
             });
           });
        // ???//////
-         $('#envData').click(function (e) {
-          etiq_id = $('#envData').attr('data-prim');          
+         $('.hr').click(function (e) {
+          etiq_id = $('.hr').attr('data-prim');          
           $('#etiqueta_id').val(etiq_id);
             $('#umoda').modal({
               show: true
@@ -250,10 +256,13 @@
 
               }     
             });
+           setTimeout(function(){
+                $('.id_erros').fadeOut(7000);
+               });
           });
 
 
-
+   
   
       });
       

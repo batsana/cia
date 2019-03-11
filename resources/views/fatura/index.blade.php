@@ -1,31 +1,35 @@
-{{-- @extends('master') --}}
-@extends('layouts.index')
+@extends('master')
 @section('content')
-{{-- /////////////////////////////////////////////////////////////////// --}}
 
- <div class="modal fade" id="myModalone" role="dialog">
-      <div class="modal-dialog modals-default">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-              <div class="modal-body">
-                   <div class="alert alert-success alert-dismissible id_sucesso" id="id_sucesso_vazios" style="display: none; margin-bottom: 20px">
-         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
-            </div>
-            <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_erros" style="display: none;" >
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> 
-    <strong> </strong>
-   </div>   
 
-                  <form  method="post" id="conf" >
-                     <input type="text" name="ta_0" id="ta_0">
-                 <table>
+   <div class="modal fade" id="umoda" role="dialog ">
+    <div class="modal-dialog modals-default">
+        <div class="modal-content" style="border: none; padding:20px;">
+      {{-- <div class="container modal-cont" style=""> --}}
+  
+		   <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+			
+			   <div class="alert" id="message" style="display: none"></div>
+			   <form method="post" id="recusa">
+
+			         {{ csrf_field() }}
+			 <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: none;" >
+			       <strong> Pagamento confirmado com sucesso!</strong>
+			   </div> 
+ 
+
+			    <input type="hidden"  class="form-control" id="id_estado" name="id_estado" value="Homolgado">
+			      <input type="hidden" name="etiqueta_id" id="etiqueta_id" >
+
+			    <div class="form-group" style="border: solid 1px #78a871">
+			    	<table>
                    <thead>
                      <tr>
                     
-                      <td><label>Número da fatura</label></td>
-                       <td><input type="text" style="min-width: 170px;" disabled name="etiqueta_id" class="form-control" id="etiqueta_id"></td>
+                      <td><label>Estado da fatura</label></td>
+                       <td><input type="text" style="min-width: 170px;" disabled name="" class="form-control" id="ta_id7"></td>
                        &nbsp;
                        <td><label>Transformacões</label></td>
                        <td><input type="text" style="min-width: 170px;" disabled name="" class="form-control" id="ta_id1"></td>
@@ -48,15 +52,8 @@
                        <td><input type="text" style="min-width: 170px;" disabled name="" class="form-control" id="ta_id4"></td>
                      </tr>
 
-                      <tr>
-
-                      <td><label>Estado da fatura</label></td>
-                       <td><input type="text" style="min-width: 170px;" disabled name="" class="form-control" id="ta_id7"></td>
-                         &nbsp;
-                       <td><label></label></td>
                        {{-- <td></td> --}}
-                       <td><button type="submit" class="button-alt grayb">Confirmar o Pagamento</button></td>
-                     </tr>
+                      
 {{-- 
                        <tr>
 
@@ -65,31 +62,37 @@
                     
                      </tr> --}}
 
-                    </form>
 
                      
                    </thead>
                  </table>
-              </div>
-              <div class="modal-footer">
-                  {{-- <button type="button" class="button-alt grayb" data-dismiss="modal">Save changes</button> --}}
-                 {{--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
-              </div>
-          </div>
-      </div>
+     
+       </div>
+         <button type="submit" class="button-alt grayb">Confirmar o Pagamento</button></td>
+                     
+       </td>
+      </form>
+   <br />
+ 
+ </div>
   </div>
-
-{{-- ///////////////////////////////////////////////////////// --}}
-
-
-  <div class="breadcomb-area">
+  </div> 
+  {{-- ?////////////////////////////////////////////////////////////////////////////// --}}
+      <div class="breadcomb-area">
     <div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
-            <h1>Lista de Faturas</h1>
+            <h1>Lista de Contratos</h1>
+
+             @if (session('resultado'))
+              <div class="alert alert-success" id="message">
+              {{ session('resultado') }}
+               </div>
+             @endif
+             
               <div class="table-responsive">
-                   <table class="table table-sc-ex">
+                <table class="table table-sc-ex">
                               <thead>
                                 <tr>
                                 <th>Nr. fatura</th>
@@ -112,15 +115,12 @@
                                    <td>{{$fab->condices}}</td>
                                    <td>{{$fab->mercadoria}}</td>              
                                    <td>{{$fab->embalagem}}</td>              
-                                 
-                               
-{{-- href="{{ url('/detalhar/'.$fab->id.'/edit')}}" --}}
+                        
+                       <td> 
 
-                                 
-
-                                      <td>
-                                            <button 
-                                            data-prim="{{$fab->numerofatura}}"
+                          <button 
+                                            data-prim="{{$fab->id}}"
+                                            data-prims="{{$fab->numerofatura}}"
                                             data-0="{{$fab->numerofatura}}"
                                             data-1="{{$fab->transformacao}}"
                                             data-2="{{$fab->condices}}"
@@ -129,90 +129,98 @@
                                             data-5="{{$fab->Liquidacao}}"
                                             data-6="{{$fab->nacionals_id}}"
                                             data-7="{{$fab->estado}}"
-                                             type="button" class="button-alt grayb" data-toggle="modal" ">Detalhes</button>
-                                         
-                                            {{--  <button data-prim="{{$fab->id}}" type="button"  class="button-alt grayb">Detalhes</button> --}}
+                                             type="button"  class="button-alt grayb ref">Detalhes</button>
 
-                                        <a href="/apagarfatura/{{ $fab->id }}" ><button   class="button-alt grayb">X</button></a>
+                            <a href="/contr/{{$fab->id}}" ><button  class="button-alt refuse">X</button></a>
+                       </td>
+                    
 
-                                          <a target='_blank' href="{{ url('/impressfatura/'.$fab->id)}}"  class="button-alt">PDF</a>
-
-
-                                   </td>
-                                 </tr>
-                               @endforeach
-                             </tbody>
-                   
+                      </tr>
+                     @endforeach 
+         
+             </tbody>
         </table>
-          <h5 class="text-center">{{ $faturas->links() }}</h5>
-      </div></div>
+          
       </div>
-    </div>
-  </div>
-    </div>  
-    </div>
-  </div>
-@endsection 
+   
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+@endsection
+
 
 @section('script')
-  <script src="js/jquery.min.js"></script>
+
+  
     <script  type="text/javascript">
 
       $(document).ready(function(){
-      $('.grayb').click(function (e) {
-             // $('#editeModal').modal('hide');
-            $('#etiqueta_id').val($(this).attr('data-prim')); 
+
+      	setTimeout(function(){
+                $('#message').fadeOut(7000);
+               });
+      
+      
+         
+             $('.ref').click(function (e) {
+             $('#editeModal').modal('hide');
+            $('#etiqueta_id').val($(this).attr('data-prim')); //poe id no input de modal
             $('#ta_0').val($(this).attr('data-0')); 
             $('#ta_id1').val($(this).attr('data-1')); 
             $('#ta_id2').val($(this).attr('data-2')); 
             $('#ta_id3').val($(this).attr('data-3')); 
             $('#ta_id4').val($(this).attr('data-4')); 
             $('#ta_id5').val($(this).attr('data-5')); 
-            $('#ta_id6').val($(this).attr('data-6')); 
-            $('#myModalone').modal({
+            $('#ta_id6').val($(this).attr('data-6'));
+            $('#ta_id7').val($(this).attr('data-7'));
+            $('#umoda').modal({
               show: true
             });
           });
 
-////////////////////////////////        
-   $('#conf').submit(function(e){
-            e.preventDefault();  
+              $('#recusa').submit(function(e){
+            e.preventDefault();
+           $.ajax({
+              type:'POST',
+              url: "/api/updatest",
+              data:{'etiqueta_id':$("#etiqueta_id").val()},
+              success:function(result){
+                if (result.is_valid){
+   
+               $('#id_sucesso').show();
+               setTimeout(function(){
+                $('.id_sucesso').fadeOut(10000);
+               });
+               
+              }
+              },
+              error: function (result) {
+                $("#recusa")[0].reset();
+                $('#id_erro').html('<p> Dados enviados com sucesso</p>')
+               $('#id_erro').show();
 
-            alert($("#ta_0").val());
-           // $.ajax({
-           //    type:'POST',
-           //    url: "/api/faturar",
-           //    data:{'ta_0':$("#ta_0").val()},
-              
-           //    success:function(result){
-
-                
-           //   $('#id_sucesso_vazio').html('<p>Dados editados com sucesso.</p>')
-           //     $('#id_sucesso_vazio').show();
-
-           //     setTimeout(function(){
-           //      $('#id_sucesso_vazio').fadeOut(4000);
-           //     });
-           //        // $("#aceitar")[0].reset();
-
-              
-           //    },
-           //    error: function (result) {
-              
-           //       $('#id_erro').html('<p>Problemas na edicão de Dados</p>')
-           //     $('#id_erro').show();
-           //     setTimeout(function(){
-           //      $('.id_erro').fadeOut(4000);
-           //     });
-
-           //    }      
-           //  });
+               setTimeout(function(){
+                $('.id_erro').fadeOut(4000);
+               });
+              }      
+            });
           });
 
+      
       });
       
+
     </script>
 @endsection
+
 
 
   

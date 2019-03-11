@@ -20,10 +20,9 @@ class ClassificacaohviController extends Controller
 
 
     public function apag($id){
-
+        
        DB::table('classificacaohvis')->where('id',$id)->delete();
-        $classicacaos = Classificacaohvi::all();
-     return view('classificacao.indexh', compact('classicacaos')); 
+    return redirect('/listar/classesh')->with('resultado', 'Dados Apagados com sucesso.'); 
          
     }
 

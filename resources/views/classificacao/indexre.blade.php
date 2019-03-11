@@ -2,7 +2,6 @@
 @extends('master')
 @section('content')
 
-{{-- ///////////////////////////////////////////////////////////////////////////// --}}
    <div class="modal fade" id="detModal" role="dialog">
     <div class="modal-dialog modals-default">
         <div class="modal-content">
@@ -73,7 +72,11 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1>Resultados da Classificação Visual/Manual de Amostras</h1>
-          
+              @if (session('resultado'))
+              <div class="alert alert-success" id="message">
+              {{ session('resultado') }}
+               </div>
+             @endif
                 <div class="table-responsive">
               <table class="table table-sc-ex">
                <thead>
@@ -137,6 +140,9 @@
  <script  type="text/javascript">
 
       $(document).ready(function(){
+      	setTimeout(function(){
+                $('#message').fadeOut(7000);
+               });
       
           $('.grayb').click(function () {
             // $('#tt').html($(this).attr('data-id'));

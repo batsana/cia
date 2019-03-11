@@ -8,6 +8,11 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1>Lista de Algodoeiras</h1>
+            @if (session('resultado'))
+              <div class="alert alert-success" id="messages">
+              {{ session('resultado') }}
+               </div>
+             @endif
     <form>
                  
 <input type="hidden" name="ff" id="ff" value="{{ @$resultado }}">
@@ -76,10 +81,14 @@
     <script>
         $(document).ready(function() {
 
+        	setTimeout(function(){
+                $('#messages').fadeOut(7000);
+               });
+
         valorGood = $('#ff').val();
 
         if (valorGood == 'good') {
-            $('#message').append('Dados Gravados com Sucesso.').addClass('alert-success').show();
+            $('#message').append('Dados Atualizados com Sucesso.').addClass('alert-success').show();
              setTimeout(function(){
                 $('#message').fadeOut(7000);
                });

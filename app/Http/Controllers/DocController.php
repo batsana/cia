@@ -53,14 +53,38 @@ class DocController extends Controller
     
     public function reportar($id) {
      $certifyc = Esquema::find($id);
-     $contrato = Contrato::find($certifyc->contrato_id);
+    if (is_null($certifyc)) {
+    	return redirect('/lista/esquema')->with('resultado', 'Esquemas nao registada.'); 
 
-     $view = View('esquema.report', compact('certifyc','contrato'));
+
+    	exit;
+    }else{
+     $contrato = Contrato::find($certifyc->contrato_id);
+     $ents = Entidade::find($contrato->entidade_id);
+     $ent = User::find($ents->user_id);
+       $ents = Entidade::find($contrato->entidade_id)->first()->id;
+     $fab = Fabrica::query()->where('entidade_id',$ents)->get();
+
+
+
+ }
+     if (is_null($fab)) {
+       $view = View('esquema.relatorio', compact('certifyc','contrato','ent','fab'));
      $pdf = \App::make('dompdf.wrapper');
-     $pdf->loadHTML($view->render());
+     $pdf->loadHTML($view->render())->setPaper('a4', 'landscape');
      return $pdf->stream();
 
+     	
+     }else{
+
+        $view = View('esquema.report', compact('certifyc','contrato','ent','fab'));
+         $pdf = \App::make('dompdf.wrapper');
+         $pdf->loadHTML($view->render())->setPaper('a4', 'landscape');
+         return $pdf->stream();
+     
+
     } 
+}
 
 
 ///////////////////////////////////////////////////////////////////
@@ -96,8 +120,7 @@ class DocController extends Controller
      // $esk = DB::table('esquemas')->where();
 
 
-     // echo $nacional->contrato_id;
-     // exit;
+  
 
 
      $view = View('fatura.report', compact('certifyc','nacional','esk'));

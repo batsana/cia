@@ -31,14 +31,23 @@ class AjaxUploadController extends Controller
       $pdf->move(public_path('pdf'), $new_name);
           
 
-       $user = Auth()->user()->id;
-       $f = Funcionario::query()->where('user_id',$user)->first()->nome; 
+       $user = Auth()->user();
+       if ($user->nivel == 1) {
+       	  $f = Funcionario::query()->where('user_id',$user->id)->first()->nome; 
 
         $eti = Getiqueta::find($request["id_etiq"]);
         $eti->estado = 'Enviado';
         $eti->pdfs = $new_name;
         $eti->tecres = $f;
         $eti->update();
+       }elseif ($user->nivel !== 1) {
+       	$eti = Getiqueta::find($request["id_etiq"]);
+        $eti->estado = 'Enviado';
+        $eti->pdfs = $new_name;
+        $eti->tecres = 'Administrador';
+        $eti->update();
+       }
+     
 
 
       return response()->json([

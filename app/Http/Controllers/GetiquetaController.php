@@ -66,10 +66,11 @@ class GetiquetaController extends Controller
        if ($te > 0) {
          $te = Getiqueta::query()->where('fabrica_id',$faril)->first()->id;   
          $fab = Getiqueta::find($te); 
-          $ultmo = Getiqueta::query()->orderBy('id','desc')->first()->inetervalo;
+         $ultmo = Getiqueta::query()->where('fabrica_id',$data['fabrica_id'])->first()->inetervalo;
+        $latest = $data['inetervalo'] + $ultmo;
 
-        $last = $data['inetervalo'];
-        $latest = $last + $ultmo;
+
+
         $fab->quantidade = $data['inetervalo'];
         $fab->tipoet = $data['tipoet'];       
         $fab->inetervalo =$latest;

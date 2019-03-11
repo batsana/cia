@@ -17,6 +17,12 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
             </div>
 
+                  @if (session('resultado'))
+    <div class="alert alert-success" id="messages">
+        {{ session('resultado') }}
+    </div>
+@endif
+
 
               <div class="table-responsive">
                    <table class="table table-sc-ex">
@@ -69,26 +75,9 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-
-        valorGood = $('#ff').val();
-
-        if (valorGood == 'good') {
-            $('#message').append('Dados Gravados com Sucesso.').addClass('alert-success').show();
-             setTimeout(function(){
-                $('#message').fadeOut(7000);
-               });
-
-        } else if (valorGood == 'bad') {
-             $('#message').append('Não foi possível Editar os Dados.').addClass('alert-danger').show();
-
-              setTimeout(function(){
-                $('#message').fadeOut(4000);
-               });
-        }
-     
-       //      document.getElementById("form-horizontal").onsubmit = function(){
-       //    location.reload(true);
-       // } 
+                 setTimeout(function(){
+                $('#messages').fadeOut(7000);
+               }); 
         });
     </script>
 @endsection

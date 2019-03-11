@@ -8,7 +8,12 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1>Lista de Funcinários</h1>
-            <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_sucesso_vazio" style="display: none;">
+               @if (session('resultado'))
+              <div class="alert alert-success" id="message">
+              {{ session('resultado') }}
+               </div>
+             @endif
+    <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_sucesso_vazio" style="display: none;">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Não existem funcionarios resistados no sistema.</strong>
         </div>
      <div class="table-responsive">
@@ -62,6 +67,11 @@
     <script  type="text/javascript">
 
       $(document).ready(function(){
+
+      	setTimeout(function(){
+                $('#message').fadeOut(7000);
+               });
+      	
          valorGood = $('#ff').val();
 
         if (valorGood == 'good') {

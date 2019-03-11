@@ -1,4 +1,5 @@
 
+
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
@@ -6,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
  
-        <title>Laravel</title>
+        <title>Esquema</title>
          <style type="text/css">
 
 
@@ -14,7 +15,6 @@
         .table {
             width: 100%;
             max-width: 80%;
-            /*margin-bottom: 1px;*/
             margin-top: 100px;
             background-color: #fff;
             font-size: 12px;
@@ -22,140 +22,118 @@
             font-family: Arial, Helvetica, sans-serif;
             border: 1px solid #000;
         }
-       
-       h1{
-        font-size: 19px;
-        font-family: Arial, Helvetica, sans-serif;
-       }
 
-       h2{
-        font-size: 18px;
-        font-family: Arial, Helvetica, sans-serif;
-       }
 
-       h3{
-        font-size: 17px;
-        font-family: Arial, Helvetica, sans-serif;
-       }
-
-       h4{
-        font-size: 16px;
-        font-family: Arial, Helvetica, sans-serif;
-       }
-
-       h5{
-        font-size: 15px;
-        font-family: Arial, Helvetica, sans-serif;
-       }
-
-       h6{
-        font-size: 14px;
-        font-family: Arial, Helvetica, sans-serif;
-       }
-
-       p{
-        font-size: 12px;
-        font-family: Arial, Helvetica, sans-serif;
-       }
-
-        .table th,
-        .table td {
-            padding: 2px;
-            vertical-align: bottom;
-            text-align: center;
-        }
+        .table tr{
+       border: 1px solid #000;
+    }
         .table thead th {
-            border: 2px;
+            border: 1px solid #000;
            
         } 
 
-        th{
-              border: 1px solid #000; 
-        }
+    
         td{
          border: 1px solid #000;
+
         }
         
-        .table .table {
-            background-color: #fff;
-        }
-
-        .list-group {
-            display: block;
-            width: 100%;
-            list-style: none;
-            margin-top: 15px;
-            margin-bottom: 15px;
-        }
-        .list-group p {
-            width: 100%;
-            height: 20px;
-            line-height: 20px;
-            list-style: none;
-            font-size: 1.1em;
-        }
+   
     </style>
     
 </head>
 <body>
-    <h1 align="center">Esquema de Embarque</h1>
+        <div align="center">
+    <img src="imgs/logo-iam.png" width="80" height="80" title="Logo of a company" alt="Logo of a company"/>
+   </div>
+
+ <h1 align="center"><strong>ESQUEMA DE EMBARQUE DE ALGODÃO RAMA</strong></h1>
+
+    <div class="row">
+        <hr style="border: 2px solid #000">
     </div>
-   
-    </head>
-    <body>
-        <div class="row">
+      <div class="row">
+       
+         <div class="col-md-6 col-lg-6 col-sm-12 " style="margin-left: 30px;">
+             
+             <table style="width:85%">
+              <tr>
+               <td style="border:none;">EXPORTADOR: <strong><u>{{$ent->name}}</strong></u></td>&nbsp; <td style="border:none; margin-left:150px">
+              ESQUEMA N<sup>o</sup> 
+          
+              
+                <strong><u>{{$certifyc->id}}</u> </strong>
+                  </td>
+           </tr>
+            <tr>
+               <td style="border:none;">CONSIGNATÁRIO:<strong><u>{{$contrato->consignatario}}</u> </strong></td>
+
+ <td style="border:none;">CAMPANHA:<strong><u>{{$contrato->campanha}}</u> </strong></td>
+
+           </tr>
+             <tr>
+               <td style="border:none;">PORTO DE EMBARQUE:<strong><u>{{$contrato->portoembarq}}</u> </strong></td>
+
+               <td style="border:none;">FACTURA:</td>
+           </tr>
+            <tr>
+               <td style="border:none;">DESTINO:<strong><u>{{$contrato->destino}}</u> </strong></td>
+                <td style="border:none;">CONTRATO N<sup>o</sup>:<strong><u>{{$contrato->nrcontrato}}</u></strong></td>
+           </tr>
+           <tr><td colspan="2" style="border:none;">MARCA DOS FARDOS:</td></tr>
+          
+           </table>
+        </div>
+
+        
+     </div>
+
+        <div class="row" style="width:85%; margin-left:30px; margin-top: -40px;">
             <table class="table">
                 <thead >
                 <tr>
-                    <th>Numero da Lista</th>
+                    <th>Instalação Fabril</th>
+                    <th>Variedade</th>
+                    <th>Concelho ou Circunscrição</th>
+                    <th>Nr. das Listas</th>
                     <th>Tipo</th>
                     <th>Quantidade de Fardos</th>
-                    <th>Lote</th>
                     <th>Comprimento da Fibra</th>
-                    <th>Codigos de Barras</th>
+                    <th>Códigos Correspondentes</th>
                     <th>Peso Bruto</th>
+                    <th>Peso Liquido</th>
+                    <th>Nr. dos Certif.</th>
+                     
                    
                   
                 </tr>
                 </thead>
                <tr>
-                    <td >{{$certifyc->nrlista}}</td>
+                     <td >{{$fab}}</td>
+                    <td >{{$certifyc->lista}}</td>
                  <td>{{$certifyc->tipo}}</td>
                  <td>{{$certifyc->quantfardo}}</td>
               
-                 <td>{{$certifyc->lote}}</td>
+                
                  <td>{{$certifyc->comprimentofibra}}</td>
                  <td>{{$certifyc->nrocorespond}}</td>
-                <!--  <td>{{$certifyc->nrocorespond}}</td> -->
+    
                  <td>{{$certifyc->pesobruto}}</td>
+                
+              
                 
                 </tr>
                </table> 
-              <table class="table" >
-               
-                <thead>
-                  <tr>
-                    <th>Peso Liquido</th>
-                    <th>Nr de Certificado</th>
-                    <!-- <th>Nr de Certificado</th> -->
-                    <th>Nr de Fabrica</th>
-                </tr>
-                </thead>
-
-                <tr>
-           <td>{{$certifyc->pesoliq}}</td>
-                 <td>{{$certifyc->nrcertific}}</td>
-                 <td>{{$certifyc->fabrica_id}}</td>
-               </tr>
-
              
-            </table>
         </div>
 
-<p>{{$contrato->consignatario}}</p>
-        <p>Assinaturas do Responsavel:</p>
-        ____________________________________
+       <div style="width:85%; margin-left:30px; margin-top: 30px">
+         <table><tr><td style="border:none;">ELABORADO POR:
+        _____________________</td><td style="border:none;">CONFERIDO POR:
+        _____________________</td><td style="border:none;">LOCAL: ______ DATA: __/__/__</td></tr></table>
+
+
+       
+    </div>
     </body>
 </html>
-
-

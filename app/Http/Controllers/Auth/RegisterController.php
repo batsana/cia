@@ -68,7 +68,7 @@ class RegisterController extends Controller
             return back()->with(['success'=>'Enidade cadastrado com sucesso']);
         }else{
             Fabrica::query()->create([
-                'endereco' => $data['endereco'],'entidade_id'=> $data['companhia_id'],'telefone' => $data['telefone'] ,'matrizfilial' => $data['matrizfilial'],'numerunico' => $data['numerunico'],'user_id'=>$user->id]);
+                'endereco' => $data['endereco'],'conse' => $data['conse'],'entidade_id'=> $data['companhia_id'],'telefone' => $data['telefone'] ,'matrizfilial' => $data['matrizfilial'],'numerunico' => $data['numerunico'],'user_id'=>$user->id]);
                 
             
              

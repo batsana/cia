@@ -39,8 +39,8 @@ class ClassificacaoController extends Controller
 
           public function apagar($id){
        DB::table('classificacaos')->where('id',$id)->delete();
-        $classificacaos = Classificacao::all();
-           return view('classificacao.indexre',compact('classificacaos')); 
+        $classificacaos = Classificacao::query()->paginate(10);
+          return redirect('/listar/classes')->with('resultado', 'Dados Apagados com sucesso.');
          
     }
 

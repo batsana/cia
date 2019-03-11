@@ -12,6 +12,11 @@
               <div class="mb40" style="display: block;"></div>
               <form  class="form-horizontal" role="form" method="POST" action="{{ url('/salvamos') }}">
                     {{ csrf_field() }}
+                         @if (session('resultado'))
+                         <div class="alert alert-danger" id="me">
+                        {{ session('resultado') }}
+                       </div>
+                        @endif
   <input type="hidden" name="tipoRegisto" id="tipoRegisto" value="entidade">
 <input type="hidden" name="ff" id="ff" value="{{ @$resultado }}">
     <div class="row">
@@ -53,7 +58,7 @@
                 {{-- <i class="notika-icon notika-phone"></i> --}}
             </div>
             <div class="nk-int-st">
-              <input id="matriz" type="text" class="form-control" name="matrizfilial" placeholder="Matriz/Filial" value="{{ old('matrizfilial') }}">
+              <input id="matriz" type="text" class="form-control hidden" name="matrizfilial" placeholder="Matriz/Filial" value="{{ old('matrizfilial') }}">
             </div>
         </div>
     </div>
@@ -129,7 +134,7 @@
             
              </div>
             <div class="nk-int-st">
-                 <input id="password-confirm" type="password" class="form-control" placeholder="Confirma Senha" name="password_confirmation" required>          
+                 <input id="password-confirm" type="password" class="form-control" placeholder="Confirmar Senha" name="password_confirmation" required>          
             </div>
         </div>
     </div>
@@ -148,6 +153,16 @@
                         @if ($errors->has('email'))
                             <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
                         @endif          
+            </div>
+        </div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="form-group ic-cmp-int">
+            <div class="form-ic-cmp">
+            
+             </div>
+            <div class="nk-int-st">
+                  <input id="conse_id" type="text" class="form-control hidden" placeholder="Concelho ou Circunscrição" name="conse">     
             </div>
         </div>
 </div>
@@ -199,17 +214,24 @@
 <script type="text/javascript">
     // busca do valor da selecao
     $(document).ready(function(){
+ setTimeout(function(){
+           $('#me').fadeOut(7000);
+         });
+    	
         $('#tipoEntidade').on('change', function(){  
             valor = $(this).val();
 
             if(valor=='fabrica'){
                 $('#selectCompanhia').removeClass('hidden');
                 $('#matriz').removeClass('hidden');
+                $('#conse_id').removeClass('hidden');
+                
                 $('#tipoRegisto').val('fabrica');
                 // se for igua a fabrica o valor da selecao o registo sera da faribrica caso nao que seja igual a entidade
             }else{
                 $('#selectCompanhia').addClass('hidden');
                 $('#matriz').addClass('hidden');
+                $('#conse_id').addClass('hidden');
                 $('#tipoRegisto').val('entidade');
             }
 
@@ -234,6 +256,8 @@
             document.getElementById("form-horizontal").onsubmit = function(){
           location.reload(true);
        } 
+
+       
     });
 </script>
 @endsection

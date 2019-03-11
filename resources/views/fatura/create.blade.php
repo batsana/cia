@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.index')
 @section('content')
 
 
@@ -9,19 +9,18 @@
             <div class="form-element-list" id="id_beros"> 
 
             <h1>Geração de faturas</h1>              
-              <form class="form-horizontal beros"  method="POST" action="{{ url('salvaesquema') }}">
+         <form class="form-horizontal beros"  method="POST" action="{{ url('salvafatura') }}">
                     {{ csrf_field() }}
 
               <input type="hidden" name="estado"  value="homologado">
                {{ csrf_field() }}
 
-         <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: none;">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Esquema de Embarque criado com sucesso!</strong>
-         </div>
-
-         <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_erro" style="display: none;" >
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Problemas na na geração da Fatura verifique o número da fatura </br>! Pode ser que esteja duplicado</strong>
-          </div>
+                @if (session('resultado'))
+                <div class="alert alert-success" id="message">
+                  {{ session('resultado') }}
+                    </div>
+                    @endif
+        
                 <div class="row">
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                        <div class="form-group ic-cmp-int">
@@ -183,37 +182,9 @@
 <script type="text/javascript">
     $(document).ready(function(){
    
-
-      $('#id_beros').on('submit','.beros',function(e){
-           e.preventDefault();
-           form = $(this);
-           $.ajax({
-          url: "{{ url('/salvafatura') }}",
-            type:'post',
-            dataType:'json',
-            data:form.serialize(),
-            success:function(result){
-              if (result.boa){
-
-               $('#id_sucesso').show();
-               setTimeout(function(){
-                $('.id_sucesso').fadeOut(5000);
+        setTimeout(function(){
+                $('#message').fadeOut(7000);
                });
-               $(".beros")[0].reset();
-              }
-              
-            },
-
-             error:function(result){
-               $('#id_erro').show();
-               setTimeout(function(){
-                $('.id_erro').fadeOut(10000);
-               });
-            }
-        
-           });
-
-      });
     });
 </script>
 

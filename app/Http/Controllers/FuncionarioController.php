@@ -36,13 +36,7 @@ class FuncionarioController extends Controller
     public function apagar($id){
        DB::table('funcionarios')->where('id',$id)->delete();
    
-    $funcionarios = Funcionario::query()
-  ->join('entidades','funcionarios.entidade_id','entidades.id')
-  ->join('users','entidades.user_id','users.id')
-  ->select('users.name','funcionarios.*')->paginate(10);
-   // $funcionarios = Funcionario::query()->paginate(10);
-           
-   return view('funcionario.index', compact('funcionarios'));
+   return redirect('/list/funcionario')->with('resultado', 'Dados Apagados com sucesso'); 
          
     } 
     public function apagar2($id){
@@ -79,17 +73,9 @@ class FuncionarioController extends Controller
         $fab->desiganacao = $request->input('desiganacao');
         $fab->update();
 
-         // $dados['is_valid'] = true;
-         // return $dados;
-         $resultado = "good";
-
-          $funcionarios = Funcionario::query()
-          ->join('entidades','funcionarios.entidade_id','entidades.id')
-          ->join('users','entidades.user_id','users.id')
-          ->where('entidades.user_id', $user)
-          ->select('users.name','funcionarios.*')->paginate(10);
-                   
-           return view('funcionario.index', compact('funcionarios','resultado')); 
+          
+                  return redirect('/list/funcionario')->with('resultado', 'Dados Atualizados com sucesso');  
+      
  
     }  
 

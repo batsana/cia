@@ -24,6 +24,12 @@ class FabricaController extends Controller
      //   return 1;
      // }
 
+     	$u = User::query()->where('email',$data['email'])->count();
+     	if ($u > 0) {
+     		return redirect('/registar/entidade')->with('resultado', 'O Email introduzido ja foi usado.'); 
+     		
+     	}
+
        $user = User::create(['name' => $data['name'],'tipoEntidade' => $data['tipoEntidade'], 'email' => $data['email'], 'password' => bcrypt($data['password'])]);
 
         if($data->tipoRegisto !== 'fabrica'){
@@ -31,9 +37,16 @@ class FabricaController extends Controller
                 'endereco' => $data['endereco'],'telefone' => $data['telefone'],'numerunico' => $data['numerunico'],'user_id'=>$user->id ]);
 
         }else{
+$fsa = Fabrica::query()->where('matrizfilial',$data['matrizfilial'] && 'numerunico',$data['numerunico'])->count();
+        	
+
+         if ($fsa > 0) {
+         	return redirect('/registar/entidade')->with('resultado', 'O número correspondente a Matriz/Filial para esta algodoeira já existe.'); 
+       }
+
             Fabrica::query()->create([
               'nome' => $data['name'],
-                'endereco' => $data['endereco'],'telefone' => $data['telefone'],'numerunico' => $data['numerunico'],'matrizfilial' => $data['matrizfilial'],'user_id'=>$user->id,
+                'endereco' => $data['endereco'],'conse' => $data['conse'],'telefone' => $data['telefone'],'numerunico' => $data['numerunico'],'matrizfilial' => $data['matrizfilial'],'user_id'=>$user->id,
                 'entidade_id'=> $data['companhia_id']
             ]);
   } 
@@ -85,23 +98,8 @@ class FabricaController extends Controller
         $fab->endereco = $request->input('endereco');
         $fab->update();
 
-        //   $user = Auth()->user()->id;
-          // $fabricas = Entidade::query()
-          // ->join('users','entidades.user_id','=','users.id')
-          //   ->where('users.tipoEntidade','=','companhia')
-          //   ->select('users.name','entidades.*'
-          //     )->paginate(10);
 
-  $fabricas = Fabrica::query()
-  ->join('entidades','fabricas.entidade_id','=','entidades.id')
-  ->join('users', 'fabricas.entidade_id', '=', 'users.id')
-    ->where('fabricas.entidade_id','=', $ido)
-    ->select('users.name','entidades.numerunico','fabricas.*')->get();
-
-   $id = $ido;
-        
-
-             return view('iam.fabricas',compact('fabricas','id','resultado')); 
+              return redirect('/listar/algudoeira')->with('resultado', 'Dados Atualizados com sucesso.'); 
  
     }  
     public function updatall(Request $request,$id){

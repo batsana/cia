@@ -3,15 +3,9 @@
  <div class="breadcomb-area">
         <div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
             <div class="row">
-                {{-- <div class="col-lg-12 col-md-12 co --}}
-  <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: none;">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Contrato Gerado com Sucesso!</strong>
-   </div>
-   <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_erro" style="display: none;" >
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Problemas na Geração do Contrato </strong>
-   </div> 
+
 <div class="form-element-list" id="id_bero">  
-   <form class="form-horizontal bero">
+   <form class="form-horizontal bero" action="{{ url('/salvacontra') }}" method="post">
                          
 
                     {{ csrf_field() }}
@@ -24,6 +18,22 @@
    <input type="hidden" name="estado"  value="Pendente">
 <h1>Introdução de Dados de Contrato</h1>
     
+                            @if (session('resultado'))
+                            <div class="alert alert-danger" id="message">
+                                  <h4>   {{ session('resultado') }} </h4>
+                             </div>
+                            @endif
+
+                            @if (session('resultadob'))
+                            <div class="alert alert-danger" id="message">
+                                  <h4>   {{ session('resultadob') }} </h4>
+                             </div>
+                            @endif
+                            @if (session('resultadof'))
+                            <div class="alert alert-success" id="message">
+                                  <h4>   {{ session('resultadof') }} </h4>
+                             </div>
+                            @endif
     <div class="row">
     
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -315,7 +325,9 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-
+          setTimeout(function(){
+                $('#message').fadeOut(7000);
+               });
 
 
       $('#contrato_id').change(function(){  
@@ -339,40 +351,7 @@
             
             });
 
-        
-   
-
-      $('#id_bero').on('submit','.bero',function(e){
-           e.preventDefault();
-           form = $(this);
-           $.ajax({
-          url: "{{ url('/salvacontra') }}",
-            type:'post',
-            dataType:'json',
-            data:form.serialize(),
-            success:function(result){
-              if (result.is_valid){
-
-               $('#id_sucesso').show();
-               setTimeout(function(){
-                $('.id_sucesso').fadeOut(7000);
-               });
-                
-              }
-              
-            $(".bee")[0].reset();
-            },
-
-             error:function(result){
-               $('#id_erro').show();
-               setTimeout(function(){
-                $('.id_erro').fadeOut(4000);
-               });
-            }
-        
-           });
-
-      });
+    
     });
 
 </script>

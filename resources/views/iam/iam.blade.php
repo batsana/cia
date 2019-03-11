@@ -8,6 +8,11 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1>Iam nas Provicias</h1>
+              @if (session('resultado'))
+              <div class="alert alert-success" id="message">
+              {{ session('resultado') }}
+               </div>
+             @endif
           
                 <div class="table-responsive">
               <table class="table table-sc-ex">
@@ -52,5 +57,17 @@
     </div>  
     </div>
   </div>
+@endsection
+@section('script')
+ <script  type="text/javascript">
+
+      $(document).ready(function(){
+      	setTimeout(function(){
+                $('#message').fadeOut(7000);
+               });
+
+      });
+      
+    </script>
 @endsection
 

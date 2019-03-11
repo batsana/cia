@@ -21,8 +21,9 @@ Route::post('/saveClassificacao','ClassificacaoController@create')->name('saveCl
 
 // Route::post('/salvafatura','FaturaController@criar');
 Route::post('/update','GetiquetaController@update');
-Route::post('/updatecot','ContratoController@updatecot');
-// Route::post('/updathvi','GetiquetaController@updathvi');
+Route::post('/updates','ContratoController@update');
+Route::post('/updatecot','ContratoController@updatecote');
+Route::post('/updatest','FaturaController@updatet');
 Route::post('/updathvi','ClassificacaohviController@updathvi');
 Route::post('/faturar','FaturaController@updat');
 Route::post('/updathvi2','ClassificacaohviController@updathvi2');

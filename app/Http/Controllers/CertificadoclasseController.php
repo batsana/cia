@@ -37,46 +37,4 @@ class CertificadoclasseController extends Controller
         }
        
 
-    //    public function pdf()
-    //    {
-    //        $pdf = \App::make('dampdf.wrapper');
-    //        $pdf ->loadHTML($this->convert_customer_data_to_html()
-
-    //          $pdf ->stream();
-    //        );
-    //    }
-
-    //    function convert_customer_data_to_html(){
-    //      $customer_data = $this->get_customer_data();
-    //      $output = '
-    //      <table class="table table-bordered table-striped table-dark" id="datatable">
-    //        <thead>
-    //             <tr>
-    //             <th>NR Contrato</th>
-    //             <th>Consignatario</th>
-    //             <th>Destino</th>
-    //             <th>Marca do Fardo</th>
-    //             <th>Port Embark</th>
-    //             <th>Periudo</th>
-    //           <th>Fabrica</th>                
-    //    </thead>
-    //      ';
-    //       @foreach($certifyc as $fab)
-    //         <tr>                                             
-    //          <td>{{$fab->quantfardo}}</td>
-    //          <td>{{$fab->quantestenso}}</td>
-    //          <td>{{$fab->destino}}</td>
-    //          <td>{{$fab->marcafardo}}</td>
-    //          <td>{{$fab->navio}}</td>
-    //         <td>{{$fab->pesobruto}}</td>              
-           
-    //           {{--   <td>{{$fab->pesolik}}</td> --}}
-    //           <td>{{$fab->esquema_id}}</td>
-    //           </tr>
-    //     @endforeach 
-
-    //    }
-     
-    // $output .=</table>
-    // return $output;
 }

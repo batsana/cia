@@ -108,7 +108,7 @@ return view('etiqueta.create',compact('entidade','fabrica_id','ultmo'));
 
 
 Route::get('/apagarhvi/{id}','ClassificacaohviController@apag');
-
+Route::get('/contr/{id}','ContratoController@apag');
 
 Route::get('/primeira/home', function () {
 return view('welcome');
@@ -168,6 +168,8 @@ Route::post('/salvacontra','ContratoController@criacao');
 // Route::get('/salvaesquema','EsquemaController@geraracao');
 // Route::get('/salvafatura','FaturaController@criar');
 Route::post('/salvarfuncionario','FuncionarioController@wekers');
+Route::post('/updatecot','ContratoController@atualizar');
+
 Route::post('/salvarfuncionariografica','FuncionarioController@wekerprint');
 
 Route::post('/salvaesquema','EsquemaController@geraracao');
@@ -224,7 +226,7 @@ Route::put('/funcione/{id}','FuncionarioController@upfunc');
 
  ////////////////////////////////////////////////////////////////////////////////DELETES
 Route::get('/apagarcertpro/{id}','CertificadoclasseController@apag');
-
+Route::get('/hviii/{id}','ClassificacaohviController@apag');
 Route::get('/apagargrafica/{id}','EntidadeController@apagargra');
 
 Route::get('/apagarfabrica/{id}','FabricaController@apagar');
@@ -318,7 +320,7 @@ Route::get('ger/cont', function () {
  $user = Auth()->user()->id;
 
 
- $entidades = Entidade::query()->where('user_id',$user)->first();
+ $entidades = Entidade::query()->where('user_id',$user)->first()->id;
 
  // $users  = Contrato::query()->where('entidade_id',$user->id)->get();
   // $users  = Contrato::query()->
@@ -384,7 +386,8 @@ Route::get('/listar/classess', function () {
 
 ///////////////////////CONTRATOS///////////////////////////
 Route::get('gestao/contratos', function () {
-    return view('contrato.second');
+	$con = Contrato::query()->where('estado','=','Pendente')->count();
+    return view('contrato.second', compact('con'));
 });
 
 Route::get('cadas/contrato', function () {
@@ -393,7 +396,9 @@ Route::get('cadas/contrato', function () {
 });
 
 Route::get('gestao/contratos', function () {
-    return view('contrato.second');
+	$con = Contrato::query()->where('estado','=','Pendente')->count();
+	$cons = Contrato::query()->where('estado','=','Homologado')->count();
+    return view('contrato.second', compact('con','cons'));
 });
 //////////////////////////////////////////////////////////Certificados//////////////
 
@@ -495,7 +500,8 @@ $userStr = str_replace('"]','', str_replace('["', '', $user));
 
 
 Route::get('listar/contrato', function () {
-	$contrato = Contrato::query()->paginate(10);	
+	
+	$contrato = Contrato::query()->where('estado','=','Pendente')->paginate(10);	
 return view('contrato.list',compact('contrato'));	
 });
 
@@ -536,11 +542,11 @@ return view('fatura.index',compact('faturas'));
 Route::get('lista/esquema', function () {
 $user = Auth()->user()->id;
 	$esquemas = Esquema::query()
-	->join('entidades','esquemas.entidade_id','entidades.id')
+	//->join('entidades','esquemas.entidade_id','entidades.id')
 	->join('contratos','esquemas.contrato_id','contratos.id')
-	->join('users','entidades.user_id','users.id')
-	->where('entidades.user_id',$user)
-	->select('contratos.*','esquemas.*','users.name','entidades.*')->paginate(10);
+	//->join('users','entidades.user_id','users.id')
+	//->where('entidades.user_id',4)
+	->select('contratos.*','esquemas.*')->paginate(10);
 return view('esquema.index',compact('esquemas'));	
 });
 
@@ -551,6 +557,7 @@ Route::get('/listar/grafica', function () {
 	->join('users','entidades.user_id','=','users.id')
 		->where('users.tipoEntidade','=','grafica')
 		->select('users.name','entidades.*')->paginate(10);
+
 return view('iam.grafica',compact('entidade'));	
 });
 

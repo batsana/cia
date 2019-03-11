@@ -208,7 +208,7 @@
              </table>
          <div class="row">
         <div style="width: 100%; border: 2px solid #000; height: 200px;">
-             <table style="padding-left:20px; padding-top: 10px; ">
+             <table style="padding-left:20px;">
              <tr>
                 <td style="border:none"><strong>MARCA DO FARDO:</strong></td>
                 <td style="border:none">{{$nacional->marcafardo}}</td>

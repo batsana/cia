@@ -47,6 +47,7 @@
 
 
                <a href="/apagarfabrica/{{ $fab->id }}" ><button  class="button-alt">X</button></a>
+              
              </td>
 
               </tr>
@@ -71,7 +72,7 @@
         valorGood = $('#ff').val();
 
         if (valorGood == 'good') {
-            $('#message').append('Dados Gravados com Sucesso.').addClass('alert-success').show();
+            $('#message').append('Dados Atualizados com Sucesso.').addClass('alert-success').show();
              setTimeout(function(){
                 $('#message').fadeOut(7000);
                });

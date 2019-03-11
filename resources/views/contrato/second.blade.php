@@ -12,10 +12,19 @@
 						
 
 							<div class=" col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<div style="position: absolute; background-color: #fa3e3e; border-radius: 4px; min-width: 21px; min-height: 20px; margin-top: 10px; margin-left: 75px;">
+								<span style="display: inline-block; max-height: 20px; margin-left: 25%; color:#fff; font-weight: bold;">{{$con}}
+								</span>
+								</div>
 							<a href="{{ url('listar/contrato')}}"><img class="dash-image" src="/imgs/lista-contratos.png" style="max-height: 200px;"></a>
                               
 							</div>
 							
+							<div class=" col-xs-6 col-sm-4 col-md-3 col-lg-2">
+							
+							<a href="{{ url('listar/contratos')}}"><img class="dash-image" src="/imgs/lista-contratos-h.png" style="max-height: 200px;"></a>
+                              
+							</div>
 						</div>
 
 

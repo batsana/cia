@@ -90,13 +90,13 @@
                    <table class="table table-sc-ex">
               <thead>
                    <tr>
-                    <th>Nr de Esquema</th>
+                    <th>Nr. de Esquema</th>
                     <th>Quant. Fardos</th>
-                    <th>Consignatario</th>
+                    <th>Consignátario</th>
  
                     {{-- <th>Fabrica de Origem</th> --}}
                    
-                    <th>P. Vigencia</th>
+                    <th>Período de Vigência</th>
                     <th>Opções</th>
                   </tr>
                 
@@ -105,12 +105,12 @@
                 <tbody>
                      @foreach($esquemas as $fab)
                     <tr>                     
-                        <td>{{$fab->id}}</td>
-                        <td>{{$fab->quantfibra}}</td>
+                       <td>{{$fab->id}}</td>
+                        <td>{{$fab->quantfardo}}</td>
                          <td>{{$fab->consignatario}}</td>
                          {{-- <td>{{$fab->nome}}</td> --}}
                         
-                        <td>{{$fab->comPeriudo}}&nbsp; á &nbsp;{{$fab->comPeriudo}}</td>              
+                        <td>{{$fab->comPeriudo}}&nbsp; à &nbsp;{{$fab->comPeriudo}}</td>              
                                
                         
                        <td> 
@@ -121,14 +121,14 @@
                         data-2="{{$fab->nrlista}}" 
                         data-3="{{$fab->tipo}}" 
                        data-4="{{$fab->destino}}" 
-                       data-5="{{$fab->quantfibra}}" 
+                       data-5="{{$fab->quantfardo}}" 
                        data-6="{{$fab->nrocorespond}}" 
                        data-7="{{$fab->pesobruto}}" 
                        data-8="{{$fab->pesoliq}}" 
                        data-9="{{$fab->portoembarq}}" 
                        data-10="{{$fab->comprimentofibra}}" 
                        data-11="{{$fab->id}}" 
-                        type="button"  class="button-alt grayb">Detalhes</button>
+                        type="button"  class="button-alt grayb" id="listModal" >Detalhes</button>
                          <a target='_blank' href="{{ url('/esque/report/' .$fab->id) }}" class="button-alt grayb">PDF</a>
                 </td>
 
@@ -156,7 +156,7 @@
 
       $(document).ready(function(){
       
-          $('.grayb').click(function () {
+          $('#listModal').click(function () {
             // $('#tt').html($(this).attr('data-id'));
             $('#id_1').val($(this).attr('data-1')); //poe id no input de modal
             $('#id_2').val($(this).attr('data-2')); //poe id no input de modal

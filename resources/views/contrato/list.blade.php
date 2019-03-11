@@ -2,62 +2,54 @@
 @section('content')
 
 
-
-        
-  {{--   <div class="container"> --}}
-      {{-- ///////////////////////////////////////////////////////////////////////////// --}}
-   <div class="modal animated rubberBand" id="Modal" role="dialog">
+   <div class="modal fade" id="umoda" role="dialog ">
     <div class="modal-dialog modals-default">
-        <div class="modal-content">
+        <div class="modal-content" style="border: none; padding:20px;">
+      {{-- <div class="container modal-cont" style=""> --}}
+  
+		   <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal">&times;</button>
+		  </div>
+			   <h3 align="center" style="color:#df822a; padding-bottom:10px;">Motivo da recusa</h3>
+			   <div class="alert" id="message" style="display: none"></div>
+			   <form method="post" id="recusa">
 
-          <form  method="POST" id="form1">
-            {{--   <input type="text" id="id_estado" name="id_estado"> --}}
+			         {{ csrf_field() }}
+			 <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: none;" >
+			       <strong> Contrato Hologado com sucesso </strong>
+			   </div> 
+ 
 
-            {{ method_field('PUT') }}
-            {{ csrf_field() }} 
+			    <input type="hidden"  class="form-control" id="id_estado" name="id_estado" value="Homolgado">
+			      <input type="hidden" name="etiqueta_id" id="etiqueta_id" >
 
-            <input type="hidden" name="id_etiq" id="id_etiq">
+			    <div class="form-group" style="border: solid 1px #78a871">
+			    	
+			    <input type="text" name="motivo" style="min-width: 100%;"  class="form-control motivo" placeholder="Observações" value="{{ old('motivo') }}"> 
+     
+       </div>
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <h2>Modal title</h2>
-                <p>Lista de Contratos submetidos</p>
-                <div class="form-group ic-cmp-int">
-            <div class="form-ic-cmp">
-            <i class="notika-icon notika-support"></i>
-             </div>
-            <div class="nk-int-st">
-                <select  id="id_estado" class="form-control" name="estado"> 
-                           <option value="valors" disabled="" selected="">Estado do Contrato</option>
-                           
-                           <option value="pendente" >Pendente</option>
-                        
-                           <option value="Homologado" >Homologado</option>
-                        
-                        </select> 
-
-                                       
-              </div>
-           </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="button-alt grayb" id="enviar">Enviar</button>
-               {{--  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button> --}}
-            </div>
-          </form>
-
-        </div>
-    </div>
+        <input style="margin-top:12px" type="submit"   class="button-alt grayb" value="Enviar"></td>
+      </form>
+   <br />
+ 
+ </div>
   </div>
+  </div> 
   {{-- ?////////////////////////////////////////////////////////////////////////////// --}}
       <div class="breadcomb-area">
     <div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
-            <h1>Lista de Fábricas da Algodoeira</h1>
+            <h1>Lista de Contratos</h1>
+
+             @if (session('resultado'))
+              <div class="alert alert-success" id="message">
+              {{ session('resultado') }}
+               </div>
+             @endif
+             
               <div class="table-responsive">
                    <table class="table table-sc-ex">
               <thead>
@@ -65,13 +57,13 @@
                     <th>Nr. do Contrato</th>
                     <th>Consignatário</th>
                     <th>Destino</th>
-                    <th>Marca do Fardo</th>
+                 {{--   <th>Marca do Fardo</th>--}}
                     <th>Porto de Embarque</th>
                 {{--     <th>Campanha</th> --}}
                     {{-- <th>Periudo</th> --}}
                     <th>Quantidade da Fibra</th>
                     {{-- <th>Preco/</th> --}}
-                    <th>Fábrica</th>
+                    {{--<th>Fábrica</th>--}}
 
                     <th>Estado do Pedido</th>
                   
@@ -84,20 +76,24 @@
                         <td>{{$fab->nrcontrato}}</td>
                          <td>{{$fab->consignatario}}</td>
                          <td>{{$fab->destino}}</td>
-                         <td>{{$fab->marcafardo}}</td>
+                         {{--<td>{{$fab->marcafardo}}</td>--}}
                         <td>{{$fab->portoembarq}}</td>              
                      {{--    <td>{{$fab->campanha}}</td> --}}
                         {{-- <td>{{$fab->periudovigencia}}</td> --}}
                           <td>{{$fab->quantfibra}}</td>
                         {{-- <td>{{$fab->preco}}</td>               --}}
-                        <td>{{$fab->nome}}</td>              
+                       {{--  <td>{{$fab->nome}}</td> --}}             
                         <td>{{$fab->estado}}</td>              
                         
                        <td> 
 
-                          {{-- <button type="button" href="{{ url('/contrato/'.$fab->id.'/edit')}}" class="btn btn-info" data-toggle="modal" data-target="#myModaltwo">Atualizar</button> --}}
+                          {{-- <button type="button" href="{{ url('/contrato/'.$fab->id.'/edit')}}" class="btn btn-info" data-toggle="modal" data-target="#myModaltwo">Atualizar</button> 
 
-                           <button data-id="{{$fab->id}}" data-estado="{{$fab->estado}}" type="button"  class="button-alt grayb">Responder</button> 
+                           <button data-id="{{$fab->id}}" data-estado="{{$fab->estado}}" type="button"  class="button-alt grayb">Responder</button>--}}
+
+                             <button data-prim="{{$fab->id}}" type="button"  class="button-alt grayb ref">Responder</button>
+
+                            <a href="/contr/{{$fab->id}}" ><button  class="button-alt refuse">X</button></a>
                        </td>
                     
 
@@ -129,27 +125,45 @@
     <script  type="text/javascript">
 
       $(document).ready(function(){
-      
-          $('.grayb').click(function () {
-            // $('#tt').html($(this).attr('data-id'));
-            $('#id_etiq').val($(this).attr('data-id')); //poe id no input de modal
-            $('#id_estado').val($(this).attr('data-estado')); //poe id no input de modal
 
-            $('#Modal').modal({
+      	setTimeout(function(){
+                $('#message').fadeOut(7000);
+               });
+      
+      
+         
+             $('.ref').click(function (e) {
+             $('#editeModal').modal('hide');
+            $('#etiqueta_id').val($(this).attr('data-prim')); //poe id no input de modal
+            $('#umoda').modal({
               show: true
             });
           });
 
-
-          $('#form1').submit(function(e){
+              $('#recusa').submit(function(e){
             e.preventDefault();
            $.ajax({
               type:'POST',
-              url: "/api/updatecot",
-              data:{'estado':$('#id_estado').val(), 'id_etiqueta':$("#id_etiq").val()},
-            
-              error: function () {
-               alert("nao foi possivel");
+              url: "/api/updates",
+              data:{'motivo':$('.motivo').val(), 'id_estado':$('#id_estado').val(), 'etiqueta_id':$("#etiqueta_id").val()},
+              success:function(result){
+                if (result.is_valid){
+   
+               $('#id_sucesso').show();
+               setTimeout(function(){
+                $('.id_sucesso').fadeOut(10000);
+               });
+               
+              }
+              },
+              error: function (result) {
+                $("#recusa")[0].reset();
+                $('#id_erro').html('<p> Dados enviados com sucesso</p>')
+               $('#id_erro').show();
+
+               setTimeout(function(){
+                $('.id_erro').fadeOut(4000);
+               });
               }      
             });
           });
@@ -157,8 +171,6 @@
       
       });
       
-      document.getElementById("form1").onsubmit = function(){
-    location.reload(true);
-}
+
     </script>
 @endsection

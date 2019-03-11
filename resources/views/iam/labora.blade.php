@@ -1,5 +1,5 @@
-{{-- @extends('layouts.index') --}}
-@extends('master')
+ @extends('layouts.index') 
+{{-- @extends('master')--}}
 @section('content')
 
    <div class="breadcomb-area">
@@ -8,6 +8,12 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1>Lista de Laboratorio</h1>
+
+                  @if (session('resultado'))
+           <div class="alert alert-success" id="messages">
+           {{ session('resultado') }}
+           </div>
+           @endif
               <div class="table-responsive">
                    <table class="table table-sc-ex">
               <thead>
@@ -51,4 +57,12 @@
     </div>
   </div>
 @endsection
-
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+                 setTimeout(function(){
+                $('#messages').fadeOut(7000);
+               }); 
+        });
+    </script>
+@endsection

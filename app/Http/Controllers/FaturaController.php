@@ -36,19 +36,30 @@ class FaturaController extends Controller
    // $varlibra = $varlik*2.2046;
    //  $vartotal = $varlibra*0.8400;
  public function criar(Request $data){
-  
-        $dados;
+   $faril = $data['numerofatura'];
+         $te = Fatura::query()->where('numerofatura',$faril)->count();
+
+         $fari = $data['nacionals_id'];
+         $tet = Fatura::query()->where('nacionals_id',$fari)->count();
+
+         if ($te > 0) {
+           return redirect('/gestao/facturas')->with('resultado', 'Número da fatura ja existente.'); 
+            exit;
+          }elseif ($tet > 0) {
+           	 return redirect('/gestao/facturas')->with('resultado', 'Fatura anteriormente gerada.'); 
+           exit;
+           }else{
 
     Fatura::query()->create(['numerofatura' => $data['numerofatura'],'transformacao' => $data['transformacao'],
      'liquidacao' => $data['liquidacao'],'condices' => $data['condices'],'mercadoria' => $data['mercadoria'],
      'embalagem' => $data['embalagem'],'marcas' => $data['marcas'],'observacoes' => $data['observacoes'],
      'tipo' => $data['tipo'],'fibra' => $data['fibra'],'pesoliquido' => $data['pesoliquido'],'nacionals_id' => $data['nacionals_id'],'fardos' => $data['fardos']]);
-    
-  $dados ['boa']=true;
 
- return value($dados);
-
+     return redirect('/gestao/facturas')->with('resultado', 'Fatura gerada com sucesso.'); 
+   
    }
+   }
+
 
      // public function criar(Request $data){
   
@@ -69,9 +80,9 @@ class FaturaController extends Controller
 
   public function delete($id){
        DB::table('faturas')->where('id',$id)->delete();
-    $faturas = Fatura::all();
+
      
-     return view('fatura.index',compact('faturas'));
+ return redirect('/list/fatura')->with('resultado', 'Fatura Apagado com sucesso');
          
     }
 
@@ -81,12 +92,15 @@ class FaturaController extends Controller
     }
 
     
-        public function updat(){
-        $eti = Fatura::find($_POST['etiqueta_id']);
-        $eti->estado = 'pago';
-        $eti->update();
+        public function updatet(Request $request){
+                  $dados; 
+			        $eti = Fatura::find($_POST['etiqueta_id']);
+			        $eti->estado = 'paga';
+			        $eti->update(); 
+			  
+			       $dados ['is_valid']=true;
+			       return value($dados);
 
-        return "good";
         
     }  
 

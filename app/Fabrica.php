@@ -8,7 +8,7 @@ use App\Entidade;
 class Fabrica extends Model
 {
 	protected $table = 'fabricas';
-	protected $fillable = ['nome','endereco','telefone','numerunico','matrizfilial','user_id','entidade_id'];
+	protected $fillable = ['nome','conse','endereco','telefone','numerunico','matrizfilial','user_id','entidade_id'];
     //
 
 

@@ -10,6 +10,8 @@ use App\Tipodois;
 use App\Tipoters;
 use App\Tipoqutro;
 use App\User;
+use DB;
+use Auth;
 
 class ContratoController extends Controller
 {
@@ -70,15 +72,36 @@ class ContratoController extends Controller
    }
 
 
- public function updatecot(){
+ public function updatecote(Request $data){
+        return $data['id_etiqueta'];
+         exit;
      
-        $eti = Contrato::find($_POST['id_etiqueta']);
-        $eti->estado = $_POST['estado'];
-        $eti->update();
- 
-        // echo "updated";
       
-    } 
+    }
+
+        public function update(Request $request){
+       // $user = Auth()->user();
+        //if ($user->nivel !== 1) {
+        		$dados; 
+			        $eti = Contrato::find($_POST['etiqueta_id']);
+			        $eti->estado = $_POST['id_estado'];
+			        $eti->motivo = $_POST['motivo'];
+			        $eti->tecres = 'Administrador';
+			        $eti->update(); 
+			  
+			       $dados ['is_valid']=true;
+			       return value($dados);
+			     
+        	// }	
+     
+    }
+
+    public function apag($id){
+        
+       DB::table('contratos')->where('id',$id)->delete();
+    return redirect('/listar/contrato')->with('resultado', 'Dados Apagados com sucesso.'); 
+         
+    }
 
 }
 
