@@ -62,28 +62,55 @@ class DocController extends Controller
      $contrato = Contrato::find($certifyc->contrato_id);
      $ents = Entidade::find($contrato->entidade_id);
      $ent = User::find($ents->user_id);
-       $ents = Entidade::find($contrato->entidade_id)->first()->id;
-     $fab = Fabrica::query()->where('entidade_id',$ents)->get();
-
-
-
  }
-     if (is_null($fab)) {
-       $view = View('esquema.relatorio', compact('certifyc','contrato','ent','fab'));
+       $view = View('esquema.relatorio', compact('certifyc','contrato','ent','ents'));
      $pdf = \App::make('dompdf.wrapper');
      $pdf->loadHTML($view->render())->setPaper('a4', 'landscape');
      return $pdf->stream();
-
-     	
-     }else{
-
-        $view = View('esquema.report', compact('certifyc','contrato','ent','fab'));
-         $pdf = \App::make('dompdf.wrapper');
-         $pdf->loadHTML($view->render())->setPaper('a4', 'landscape');
-         return $pdf->stream();
+ 
+}
+public function fatured($id) {
+	  $cod = Fatura::find('$id');
+    // $esk = Fatura::query()->join('certificadonacionals','faturas.nacionals_id','certificadonacionals.id') 
+    // ->join('certificadoclasses','certificadonacionals.certif_id','certificadoclasses.id')
+    // ->join('esquemas','certificadoclasses.esquema_id','esquemas.id')
+    // ->where('faturas.id',$id)
+    // ->select('esquemas.*')->get();
+      
      
 
-    } 
+     $certifyc = Fatura::find($id);
+     $nacional = Certificadonacional::find($certifyc->nacionals_id);
+     $nacio = Certificadoclasse::find($nacional->certif_id);
+
+     $esk = DB::table('esquemas')->where('contrato_id',$nacional->contrato_id)->get();
+
+     // $de = DB::table('esquemas')->where('contrato_id',5)->pluck('valortotal');
+ 
+
+     //  return $de;
+     // exit;
+
+     //  $f = explode('[', $de);
+
+     //  $fa = explode(']', $f);
+
+     // return $fa;
+     // exit;
+
+    //  foreach ($de as $cc)  
+    //        $dr = $cc ++
+    // return $dr;
+
+    // exit;
+
+
+
+     $view = View('fatura.report', compact('certifyc','nacional','esk'));
+     $pdf = \App::make('dompdf.wrapper');
+     $pdf->loadHTML($view->render());
+     return $pdf->stream();
+ 
 }
 
 

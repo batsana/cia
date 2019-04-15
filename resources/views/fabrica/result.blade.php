@@ -10,11 +10,11 @@
 						
 						<div class="row">
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-							<a title="Resultados de classificacao das amostras" href="{{ url('resultado/classificacao') }}"><img class="dash-image" src="/imgs/listas-classif.png" style="max-height: 200px;"></a>
+							<a title="Lista de Amostras Enviadas para a classificação" href="{{ url('resultado/classificacao') }}"><img class="dash-image" src="/imgs/listas-classif.png" style="max-height: 200px;"></a>
                               
 							</div>
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-							<a title="Baixar etiquetas" href="{{ url('listar/classeshs') }}"><img class="dash-image" src="/imgs/classif-por-HVI.png" style="max-height: 200px;"></a>
+							<a title="Resultados de Classificação por HVI" href="{{ url('listar/classeshs') }}"><img class="dash-image" src="/imgs/classif-por-HVI.png" style="max-height: 200px;"></a>
                               
 							</div>
 

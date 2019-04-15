@@ -109,6 +109,7 @@ return view('etiqueta.create',compact('entidade','fabrica_id','ultmo'));
 
 Route::get('/apagarhvi/{id}','ClassificacaohviController@apag');
 Route::get('/contr/{id}','ContratoController@apag');
+Route::get('/aphvi/{id}','ClassificacaohviController@apag');
 
 Route::get('/primeira/home', function () {
 return view('welcome');
@@ -455,20 +456,31 @@ Route::get('resultado/classificacao', function () {
 ///////////////////////////////////listar etiquetas as etiquetas que tiverem o id do pesquisador
 Route::get('/ver/etiqueta', function () {
 	/*ultimas alteracoes*/ 
-	$user = Auth()->user();         
+	$user = Auth()->user();  
+  // echo $user;
+  // exit;
+  if ($user->nivel !== 1) {
+     $fun = Entidade::query()->where('user_id',$user->id)->first()->id;
+     //  $fun = Funcionario::query()->where('fabrica_id',$fabrica_id)->first()->nome;
+
+          $classes = Getiqueta::query()->where('entidade_id',$fun)->get();
+        
+         }       
         // $classes = Getiqueta::query()        
         // ->join('fabricas', 'getiquetas.fabrica_id', '=', 'fabricas.id')
-        // ->join('funcionarios', 'getiquetas.entidade_id', '=', 'funcionarios.id')
+        // ->join('funcionarios', 'getiquetas.entidade_id', '= 1', 'funcionarios.id')
         // ->where('estado','=','Enviado')
         // ->select('getiquetas.*','funcionarios.nome','fabricas.nome')->get();              
-        //    return view('etiqueta.indexf',compact('classes'));     
-         $classes = Getiqueta::query()        
-        ->join('fabricas', 'getiquetas.fabrica_id', '=', 'fabricas.id')
-        ->join('entidades', 'getiquetas.entidade_id', '=', 'entidades.id')
+        //    return view('etiqueta.indexf',compact('classes'));
+ 
+
+        //  $classes = Getiqueta::query()        
+        // ->join('fabricas', 'getiquetas.fabrica_id', '=', 'fabricas.id')
+        // ->join('entidades', 'getiquetas.entidade_id', '=', 'entidades.id')
+        // // ->join('users', 'entidades.user_id', '=', 'users.id')
         // ->join('users', 'entidades.user_id', '=', 'users.id')
-        ->join('users', 'entidades.user_id', '=', 'users.id')
-        ->where('estado','=','Enviado')
-        ->select('getiquetas.*','users.name','fabricas.nome')->get();              
+        // ->where('estado','=','Enviado')
+        // ->select('getiquetas.*','users.name','fabricas.nome')->get();              
            return view('etiqueta.indexf',compact('classes'));   
 });
 // 
@@ -503,6 +515,12 @@ Route::get('listar/contrato', function () {
 	
 	$contrato = Contrato::query()->where('estado','=','Pendente')->paginate(10);	
 return view('contrato.list',compact('contrato'));	
+});
+
+Route::get('listar/contratos', function () {
+  
+  $contrato = Contrato::query()->where('estado','=','Homolgado')->paginate(10);  
+return view('contrato.list',compact('contrato')); 
 });
 
 Route::get('cert/origem', function () {
@@ -590,7 +608,11 @@ Route::get('/use/repo/{views_type}', 'DocController@reports');
 
 Route::get('/users', 'UserController@index');
 Route::get('/users/report/{id}', 'DocController@report');
+
 Route::get('/esque/report/{id}', 'DocController@reportar');
+
+Route::get('/faturado/{id}', 'DocController@fatured');
+
 Route::get('/impressaobom/{id}', 'DocController@reportario');
 Route::get('/impressfatura/{id}', 'DocController@repor');
 Route::get('/usersna/report/{id}', 'DocController@rap');

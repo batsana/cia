@@ -83,7 +83,7 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
-            <h1>Lista de Contratos</h1>
+            <h1>Lista de Faturas</h1>
 
              @if (session('resultado'))
               <div class="alert alert-success" id="message">
@@ -96,6 +96,7 @@
                               <thead>
                                 <tr>
                                 <th>Nr. fatura</th>
+                                <th>Estado da fatura</th>
                                 <th>Transportadora</th>
                                 <th>Liquidacao</th>
                                 <th>Condicoes</th>
@@ -110,6 +111,7 @@
                                  @foreach($faturas as $fab)
                                    <tr>
                                    <td>{{$fab->numerofatura}}</td>
+                                   <td>{{$fab->estado}}</td>
                                    <td>{{$fab->transformacao}}</td>
                                    <td>{{$fab->liquidacao}}</td>
                                    <td>{{$fab->condices}}</td>
@@ -130,7 +132,7 @@
                                             data-6="{{$fab->nacionals_id}}"
                                             data-7="{{$fab->estado}}"
                                              type="button"  class="button-alt grayb ref">Detalhes</button>
-
+                            <a target='_blank' href="{{ url('/faturado/' .$fab->id) }}" class="button-alt grayb">PDF</a>
                             <a href="/contr/{{$fab->id}}" ><button  class="button-alt refuse">X</button></a>
                        </td>
                     

@@ -25,6 +25,11 @@
    <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_erro" style="display: none;" >
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Problemas no Envio de Amostras!</strong>
    </div> 
+   @if (session('resultados'))
+              <div class="alert alert-success" id="message">
+              {{ session('resultados') }}
+               </div>
+             @endif
     
     <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -140,7 +145,7 @@
            
             </div>
             <div class="nk-int-st">
-          <input id="sacha" type="date" class="form-control" name="sacha1" placeholder="Campanha" value="{{ old('comprimento') }}" required autofocus> 
+          <input id="sacha1" type="date" class="form-control" name="sacha1" placeholder="Campanha" value="{{ old('comprimento') }}" required autofocus> 
             </div>
         </div>
     </div>
@@ -189,6 +194,9 @@
 <script type="text/javascript">
     $(document).ready(function(){
    
+        setTimeout(function(){
+                $('#message').fadeOut(7000);
+               });
 
       $('#id_calm').on('submit','.calm',function(e){
            e.preventDefault();

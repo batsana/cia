@@ -13,6 +13,12 @@
               {{ session('resultado') }}
                </div>
              @endif
+
+              @if (session('resultadoss'))
+              <div class="alert alert-success" id="messages">
+              {{ session('resultadoss') }}
+               </div>
+             @endif
     <form>
                  
 <input type="hidden" name="ff" id="ff" value="{{ @$resultado }}">

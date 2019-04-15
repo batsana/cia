@@ -12,27 +12,27 @@
 
 
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-							<a title="Gestão de Entidades" href="{{ url('list/re') }}"><img class="dash-image" src="imgs/classif-amostras.png" style="max-height: 200px;"></a>
+							<a title="Classificação de amostras recebidas" href="{{ url('list/re') }}"><img class="dash-image" src="imgs/classif-amostras.png" style="max-height: 200px;"></a>
                               
 							</div>
                             	@if (auth()->user()->nivel !== 1)
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-								<a href="{{ url('listar/classes') }}"><img src="imgs/classific_visual.png" style="max-height: 200px;"></a>
+								<a title="Listas de Amostras classificadas" href="{{ url('listar/classes') }}"><img src="imgs/classific_visual.png" style="max-height: 200px;"></a>
 							</div>
 								 @endif
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-								<a href="{{ url('listar/classesh') }}"><img src="imgs/classif-por-HVI.png" style="max-height: 200px;"></a>
+								<a title="Lista de Classicações feitas por HVI" href="{{ url('listar/classesh') }}"><img src="imgs/classif-por-HVI.png" style="max-height: 200px;"></a>
            
 							</div>
 
 								@if (auth()->user()->nivel !== 1)
 							 <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" >
-								<a href="{{ url('gerar/funcionario') }}"><img src="/imgs/registo-entidades.png" style="max-height: 200px;"></a>
+								<a title="Cadastrar Funcionarios" href="{{ url('gerar/funcionario') }}"><img src="/imgs/registo-entidades.png" style="max-height: 200px;"></a>
                               
 							</div> 
 
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" >
-								<a href="{{ url('list/funcionario') }}"><img src="/imgs/lista-funcionarios.png" style="max-height: 200px;"></a>
+								<a title="Listar Funcionarios" href="{{ url('list/funcionario') }}"><img src="/imgs/lista-funcionarios.png" style="max-height: 200px;"></a>
                               
 							</div>
 							 @endif

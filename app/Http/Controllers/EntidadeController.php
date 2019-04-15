@@ -45,38 +45,24 @@ public function apagariam($id){
    $resultado = "good";
      $ent = Entidade::find($id);
          $user = User::find($ent->user_id);
-
-      // $ent->name = $request->input('name');
-      //   $ent->telefone = $request->input('telefone');
-      //   $ent->endereco = $request->input('endereco');
-
-        $ent->update();
-        $user->update();
-
         return view('iam.edicao',compact('ent','user'));
 
   }
 
     public function update(Request $request,$id){
-      $resultado = "good";
+      // $resultado = "good";
        $ent = Entidade::find($id);
-
         $user = User::find($ent->user_id);
 
         $ent->numerunico = $request->input('numerunico');
         $ent->telefone = $request->input('telefone');
         $ent->endereco = $request->input('endereco');
         $user->name = $request->input('name');
+        
         $ent->update();
         $user->update();
  
-       $user = Auth()->user();
-        $algo = Entidade::query()
-        ->join('users','entidades.user_id','=','users.id')
-          ->where('users.tipoEntidade','=','companhia')
-          ->select('users.name','entidades.*'
-            )->paginate(10);
-     return view('iam.home',compact('algo','user','resultado'));         
+     return redirect('/listar/algudoeira')->with('resultadoss', 'Dados Atualizados com sucesso.');         
     } 
 
 
@@ -117,7 +103,7 @@ public function updategra(Request $request,$id){
         
 
      public function updatelab(Request $request,$id){
-$resultado = "good";
+// $resultado = "good";
        $ent = Entidade::find($id);
          $user = User::find($ent->user_id); 
 
@@ -159,7 +145,7 @@ $resultado = "good";
   }
 
   public function updatiam(Request $request, $id){
-    $resultado = "good";
+    // $resultado = "good";
     $ent = Entidade::find($id);
     $users = User::find($ent->user_id);
 
@@ -177,7 +163,8 @@ $resultado = "good";
   ->join('users','entidades.user_id','=','users.id')
     ->where('users.tipoEntidade','=','iamprovincial')
     ->select('users.*','entidades.*')->paginate(10);
-return view('iam.iam',compact('entidade','resultado')); 
+    return redirect('/listar/iam')->with('resultado', 'Dados Atualizados com sucesso.');  
+// return view('iam.iam',compact('entidade','resultado')); 
   }
 
 }

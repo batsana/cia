@@ -102,24 +102,28 @@
                     <th>Códigos Correspondentes</th>
                     <th>Peso Bruto</th>
                     <th>Peso Liquido</th>
-                    <th>Nr. dos Certif.</th>
+                  
                      
                    
                   
                 </tr>
                 </thead>
                <tr>
-                   <td >{{$fab->province}}</td>
-                    <td >{{$certifyc->lista}}</td>
-                 <td>{{$certifyc->tipo}}</td>
-                 <td>{{$certifyc->quantfardo}}</td>
-              
+                   <td >{{$ent->provincia}}</td>
+                    
+                 <td></td>
+                 <td></td>
+                 <td >{{$certifyc->lista}}</td>
                 
                  <td>{{$certifyc->comprimentofibra}}</td>
-                 <td>{{$certifyc->nrocorespond}}</td>
-    
-                 <td>{{$certifyc->pesobruto}}</td>
+
+                 <td>{{$certifyc->quantfardo}}</td>
+      <td>{{$certifyc->comprimentofibra}}</td>
                 
+                 <td>{{$certifyc->nrocorespond}}</td>
+
+                 <td>{{$certifyc->pesobruto}}</td>
+                  <td>{{$certifyc->pesoliq}}</td>
               
                 
                 </tr>

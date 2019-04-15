@@ -13,6 +13,7 @@ use App\Esquema;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Getiqueta;
+use BD;
 
 // use App\consulta;
 class HomeController extends Controller
@@ -26,8 +27,12 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
+     
+
+
 
     public function index(){
+
         $user = Auth()->user();
         // return value($user);
 
@@ -88,7 +93,7 @@ return view('fabrica.first');
             }else{
               $referencia =0;
             }
-              $var = Getiqueta::query()->where('estado','=','enviado')->count();
+              $var = Getiqueta::query()->where('estado','=','Novo')->count();
            return view('etiqueta.indexd', compact('var'));
             // echo "grafica entrou";
         } 

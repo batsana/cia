@@ -207,6 +207,7 @@
                 {{--     <th>Trcount</th> --}}
                     <th>Cg</th>
                       <th>TrCount</th>
+
               {{--       <th>TrArea</th>   --}}               
                    {{--  <th>LfGrade</th>
                     <th> Moise</th>
@@ -217,7 +218,7 @@
                     <th> D.P</th>
                     <th> LAB</th>
                     <th> FAB</th> --}}
-                {{--     <th> Opcoes</th>  --}}
+                    <th> Opcoes</th> 
                    
              
                    
@@ -242,6 +243,9 @@
                 <td>{{$clas->cg}}</td>
                 {{-- <td>{{$clas->cg}}</td> --}}
                 <td>{{$clas->trcount}}</td>
+                <td>
+                  <a href="/aphvi/{{$clas->id}}" ><button  class="button-alt refuse">X</button></a>
+                </td>
                
 
                  </tr> 

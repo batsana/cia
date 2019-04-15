@@ -26,6 +26,20 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="form-example-int form-horizental">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Número Único</label>
+                                    </div>
+                                    <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                        <div class="nk-int-st">
+                                            <input type="text" value="{{$ent->numerunico}}" id="nome" name="numerunico" class="form-control input-sm" placeholder="Número Único">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-example-int form-horizental mg-t-15">
                             <div class="form-group">
                                 <div class="row">
@@ -65,7 +79,7 @@
 
 
 
- <button href="#" value="save" class="button-alt grayb">&laquo; Voltar</button>
+                         <button href="" value="save" class="button-alt grayb">&laquo; Voltar</button>
                                 </div>
                             </div>
                      

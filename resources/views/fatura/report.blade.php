@@ -175,14 +175,14 @@
              <thead style="border: 1px solid #000;">   
              <tr style="border: 1px solid #000;">
                 <td style="border: 1px solid #000;"><strong>LOTE</strog></td>
-                <td "><strong>TIPO</strog></td>
-                <td "><strong>QUANTIDADE</strog></td>
+                <td><strong>TIPO</strog></td>
+                <td><strong>QUANTIDADE</strog></td>
                 <td"><strong>NR CORESPONDENTE</strng></td>
-                <td "><strng>COMP</strog></td>
-                 <td "><strng>PL</strog></td>
-                <td "><strog>LP</stron></td>
-                <td "><strog>V TOTAL:</strog></td>
-                <td "><stron>TOTAL COM PERCENTAGEM:</stron></td>
+                <td><strng>COMP</strog></td>
+                 <td><strng>PL</strog></td>
+                <td><strog>LP</stron></td>
+                <td><strog>V TOTAL:</strog></td>
+                <td><stron>TOTAL COM PERCENTAGEM:</stron></td>
 
             </tr>
             </thead>
@@ -203,6 +203,7 @@
              
             </tr>
                 @endforeach 
+                <tr><td style="width: 100%">Total pago</td><td><input type="number" disabled value="0" id="pesobruto" style="width:100%;"></td></tr>
             </tbody>
 
              </table>
@@ -244,7 +245,8 @@
      </div>
 {{--    <p>{{$nacional->id}}</p> --}}
 
-    </body>
-</html>
 
+    </body>
+
+</html>
 

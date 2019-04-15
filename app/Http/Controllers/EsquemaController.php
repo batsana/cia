@@ -28,7 +28,7 @@ class EsquemaController extends Controller
      $fr = $request['adia'];
      
       
-                 $f = explode(',', $act);
+                -
 
           Classificacao::whereIn('id', $f)->update(['estadovend' => "v"]);
      
