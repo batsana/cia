@@ -9,20 +9,6 @@
         <title>Laravel</title>
          <style type="text/css">
 
-
-
-        /*.table {
-            width: 100%;
-            max-width: 80%;
-            /*margin-bottom: 1px;*/
-          /*  margin-top: 300px;
-            background-color: #fff;
-            font-size: 12px;
-            text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
-            border: 1px solid #000;
-        }*/
-       
        h1{
         font-size: 19px;
         font-family: Arial, Helvetica, sans-serif;

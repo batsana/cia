@@ -117,7 +117,7 @@
                        data-entidade_id="{{$clas->entidade_id}}" 
                        data-tipo="{{$clas->tipo}}" 
               
-                        type="button"  class="button-alt grayb"">Detalhes</button>
+                        type="button"  class="button-alt grayb">Detalhes</button>
 
 
                        <a href="/apagarclasse/{{ $clas->id }}" ><button  class="button-alt"">X</button></a> 

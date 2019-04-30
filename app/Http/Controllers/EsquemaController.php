@@ -26,9 +26,11 @@ class EsquemaController extends Controller
         
      $act = $request['adi'];
      $fr = $request['adia'];
-     
-      
-                -
+       
+
+      // echo $fr;
+      // exit;
+                
 
           Classificacao::whereIn('id', $f)->update(['estadovend' => "v"]);
      
