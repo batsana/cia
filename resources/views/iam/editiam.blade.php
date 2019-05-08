@@ -44,11 +44,11 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Provincia</label>
+                                        <label class="hrzn-fm">Província</label>
                                     </div>
                                     <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                         <div class="nk-int-st">
-                                            <input type="text" name="provincia" value="{{$users->provincia}}" class="form-control input-sm" placeholder="Provincia">
+                                            <input disabled type="text" name="provincia" value="{{$users->provincia}}" class="form-control input-sm" placeholder="Província">
                                         </div>
                                     </div>
                                 </div>

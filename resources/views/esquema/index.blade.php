@@ -86,6 +86,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1>Listas de Esquemas de Embarque</h1>
+            @if($esquemas->count() > 0)
               <div class="table-responsive">
                    <table class="table table-sc-ex">
               <thead>
@@ -142,6 +143,21 @@
              {{-- <h5 class="text-center">{{ $esquemas->links() }}</h5> --}}
 
              </div>
+               @else
+
+                   <div class="alert alert-danger alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: block; margin-top: 30px;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong style="align-content: center;"><h5> Não foi encontrado nenhum registo nesta categoria!</h5></strong></div>
+                @endif
+              <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 15px;" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    </div>
         
           </div>
         </div>

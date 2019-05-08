@@ -17,7 +17,7 @@
 
 			         {{ csrf_field() }}
 			 <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: none;" >
-			       <strong> Contrato Homologado com sucesso. </strong>
+			       <strong> Contrato Homologado com sucesso </strong>
 			   </div> 
  
 
@@ -43,8 +43,8 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
-            <h1>Lista de Contratos Homologados</h1>
-     @if($contrato->count() > 0)
+            <h1>Lista de Contratos Não Homologados</h1>
+      @if($contrato->count() > 0)
              @if (session('resultado'))
               <div class="alert alert-success" id="message">
               {{ session('resultado') }}
@@ -87,16 +87,16 @@
                        {{--  <td>{{$fab->nome}}</td> --}}             
                         <td>{{$fab->estado}}</td>              
                         
-                       {{-- <td>  --}}
+                       <td> 
 
                           {{-- <button type="button" href="{{ url('/contrato/'.$fab->id.'/edit')}}" class="btn btn-info" data-toggle="modal" data-target="#myModaltwo">Atualizar</button> 
 
                            <button data-id="{{$fab->id}}" data-estado="{{$fab->estado}}" type="button"  class="button-alt grayb">Responder</button>--}}
 
-                          {{--    <button data-prim="{{$fab->id}}" type="button"  class="button-alt grayb ref">Homologar</button>
+                            {{--  <button data-prim="{{$fab->id}}" type="button"  class="button-alt grayb ref">Responder</button>
 
-                            <a href="/contrs/{{$fab->id}}" ><button  class="button-alt refuse">Recusar</button></a>
-                       </td> --}}
+                            <a href="/contrs/{{$fab->id}}" ><button  class="button-alt refuse">Recusar</button></a> --}}
+                       </td>
                     
 
                       </tr>

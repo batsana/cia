@@ -27,8 +27,8 @@
 			      <input type="hidden" name="etiqueta_id" id="etiqueta_id" >
             
 
-          <h1>Confirmação de Pagamento</h1>
-			    <div class="form-group" style="border: solid 1px #78a871; padding-bottom: 20px;">
+          <h1>Detalhes da Factura</h1>
+			    <div class="form-group" style="border: solid 1px #78a871;padding-bottom: 20px;">
 			    	<table>
                    <thead>
                      <tr>
@@ -73,9 +73,10 @@
                  </table>
      
        </div>
-         <button type="submit" class="button-alt grayb">Confirmar o Pagamento</button></td>
-                     
+      {{--    <button type="submit" class="button-alt grayb">Confirmar o Pagamento</button>
        </td>
+                     
+       </td> --}}
       </form>
    <br />
  
@@ -89,7 +90,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1>Lista de Facturas</h1>
-@if($faturas->count() > 0)
+    @if($faturas->count() > 0)
              @if (session('resultado'))
               <div class="alert alert-success" id="message">
               {{ session('resultado') }}
@@ -115,7 +116,7 @@
                               <tbody>
                                  @foreach($faturas as $fab)
                                    <tr>
-                                   <td>{{$fab->id}}</td>
+                                   <td>{{$fab->numerofatura}}</td>
                                    <td>{{$fab->estado}}</td>
                                    <td>{{$fab->transformacao}}</td>
                                    <td>{{$fab->liquidacao}}</td>
@@ -136,7 +137,7 @@
                                             data-5="{{$fab->Liquidacao}}"
                                             data-6="{{$fab->nacionals_id}}"
                                             data-7="{{$fab->estado}}"
-                                             type="button"  class="button-alt grayb ref">Confirmar Pagamento</button>
+                                             type="button"  class="button-alt grayb ref">Detalhes</button>
                             <a target='_blank' href="{{ url('/faturado/' .$fab->id) }}" class="button-alt grayb">PDF</a>
 
                             <a href="/factdell/{{$fab->id}}" ><button  class="button-alt refuse">X</button></a>
@@ -155,19 +156,17 @@
                    <div class="alert alert-danger alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: block; margin-top: 30px;">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong style="align-content: center;"><h5> Não foi encontrado nenhum registo nesta categoria!</h5></strong></div>
                 @endif
-                   <div class="row">
+          <div class="row">
        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
        
             
               <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
-      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 15px;" href="{{ url('/gestao/contratos') }}">&laquo; Voltar</a>          
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 5px;" href="{{ url('/faturas') }}">&laquo; Voltar</a>          
            
         </div>
     </div>
     </div>
-   
 </div>
-
 </div>
 </div>
 </div>

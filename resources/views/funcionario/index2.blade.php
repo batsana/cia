@@ -10,7 +10,7 @@
             <h1>Lista de Funcionários</h1>
 
             <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_sucesso_vazio" style="display: none;">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Não existem amostras por classificar.</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Não foi encontrdo nenhum registo nesta categoria!</strong>
    </div>
               <div class="table-responsive">
                   <table class="table table-sc-ex" id="lista">
@@ -41,8 +41,19 @@
          
            </tbody>
         </table>
-          {{-- <h5 class="text-center">{{$funcionarios->links() }}</h5> --}}
-      </div></div>
+          <h5 class="text-center">{{$funcionarios->links() }}</h5>
+      </div>
+       <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 15px;" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    {{-- </div> --}}
+    </div>
       </div>
     </div>
   </div>

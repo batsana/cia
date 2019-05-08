@@ -21,43 +21,43 @@
                  <input type="text"  id="id_det6">
                  <input type="text"  id="id_det7"> --}}
                 {{--  <input type="text"  id="id_det8"> --}}
-              
+             
               <table>
                 <thead>
                   <tr>
-                    <td>Nr. do Fardo</td>
+                    <td style="text-align: right; padding-right: 5px">Nr. do Fardo</td>
                     <td><input type="text" class="form-control" id="id_det"></td>
-                    <td>Lote</td>
+                    <td style="text-align: right; padding-right: 5px">Lote</td>
                     <td> <input type="text" class="form-control"  id="id_det1"></td>
                   </tr> 
                   <tr>
-                    <td>Período de Vigência</td>
+                    <td style="text-align: right; padding-right: 5px">Período de Vigência</td>
                     <td><input type="text" class="form-control" id="id_det2"></td>
-                    <td style="border: none; width: 70px;">á</td>
+                    <td style="text-align: right; padding-right: 5px; text-align: center;">à</td>
                     <td><input type="text" class="form-control" id="id_det8"></td>
                     {{-- <td> </td> --}}
                   </tr>
 
                    <tr>
-                    <td>Peso Líquido</td>
+                    <td style="text-align: right; padding-right: 5px">Peso Líquido</td>
                     <td><input type="text" class="form-control" id="id_det3"></td>
-                    <td>Peso bruto</td>
+                    <td style="text-align: right; padding-right: 5px">Peso bruto</td>
                     <td> <input type="text" class="form-control"  id="id_det4"></td>
                   </tr>  
 
                    <tr>
-                    <td>Grau</td>
+                    <td style="text-align: right; padding-right: 5px">Grau</td>
                     <td><input type="text" class="form-control" id="id_det7"></td> 
-                    <td>Comprimento</td>
+                    <td style="text-align: right; padding-right: 5px">Comprimento</td>
                     <td><input type="text" class="form-control" id="id_det9"></td>
                     
                   </tr> 
                   <tr>
                    
                   <tr>
-                    <td>Fábrica</td>
+                    <td style="text-align: right; padding-right: 5px">Fábrica</td>
                     <td><input type="text" class="form-control" id="id_det5"></td>
-                    <td>Laboratorio</td>
+                    <td style="text-align: right; padding-right: 5px">Laboratório</td>
                     <td> <input type="text" class="form-control"  id="id_det6"></td>
                   </tr> 
                  
@@ -81,7 +81,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1 style="padding: 20px;">Resultados da Classificação de Amostras</h1>
-          
+             @if($classificacaos->count() > 0)
                 <div class="table-responsive">
               <table class="table table-sc-ex">
               <thead>
@@ -146,6 +146,21 @@
            </table>
              <h5 class="text-center">{{ $classificacaos->links() }}</h5>
         </div>
+          @else
+
+                   <div class="alert alert-danger alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: block; margin-top: 30px;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong style="align-content: center;"><h5> Não foi encontrado nenhum registo nesta categoria!</h5></strong></div>
+                @endif
+          <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 15px;" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    </div>
           </div>
         </div>
       </div>

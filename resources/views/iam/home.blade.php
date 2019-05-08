@@ -8,15 +8,18 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1>Lista de Algodoeiras</h1>
+             @if($algo->count() > 0)
             @if (session('resultado'))
               <div class="alert alert-success" id="messages">
               {{ session('resultado') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
                </div>
              @endif
 
               @if (session('resultadoss'))
               <div class="alert alert-success" id="messages">
               {{ session('resultadoss') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
                </div>
              @endif
     <form>
@@ -75,6 +78,21 @@
         </table>
         <h5 class="text-center">{{ $algo->links() }}</h5>
       </div>
+       @else
+
+                   <div class="alert alert-danger alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: block; margin-top: 30px;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong style="align-content: center;"><h5> Não foi encontrado nenhum registo na base de dados!</h5></strong></div>
+                @endif
+      <div class="row"> 
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff;" href="{{ url('/gestao/entidade') }}">&laquo; Voltar</a>        
+           
+        </div>
+    </div>
+    </div>
       </div>
     </div>
   </div>
@@ -87,24 +105,24 @@
     <script>
         $(document).ready(function() {
 
-        	setTimeout(function(){
-                $('#messages').fadeOut(7000);
-               });
+        	// setTimeout(function(){
+         //        $('#messages').fadeOut(7000);
+         //       });
 
         valorGood = $('#ff').val();
 
         if (valorGood == 'good') {
             $('#message').append('Dados Atualizados com Sucesso.').addClass('alert-success').show();
-             setTimeout(function(){
-                $('#message').fadeOut(7000);
-               });
+             // setTimeout(function(){
+             //    $('#message').fadeOut(7000);
+             //   });
 
         } else if (valorGood == 'bad') {
              $('#message').append('Não foi possível Editar os Dados.').addClass('alert-danger').show();
 
-              setTimeout(function(){
-                $('#message').fadeOut(4000);
-               });
+              // setTimeout(function(){
+              //   $('#message').fadeOut(4000);
+              //  });
         }
      
             document.getElementById("form-horizontal").onsubmit = function(){

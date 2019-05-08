@@ -78,11 +78,11 @@ class FaturaController extends Controller
    // }
 
 
-  public function delete($id){
+  public function apag($id){
        DB::table('faturas')->where('id',$id)->delete();
 
      
- return redirect('/list/fatura')->with('resultado', 'Fatura Apagado com sucesso');
+ return redirect('/list/fatura')->with('resultado', 'Factura apagada com sucesso.');
          
     }
 

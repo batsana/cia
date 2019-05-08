@@ -13,7 +13,7 @@
 
 {{-- <div class="alert alert-success alert-dismissible id_sucesso" --}}
   <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso_vazio" style="display: none;">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Não existem funcionarios resistados no sistema.</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Não existem funcionários registados no sistema.</strong>
         </div>
 
 
@@ -100,7 +100,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
             <h1>Resultados da Classificação de Amostras por HVI</h1>
-
+          @if($classicacaos->count() > 0)
                 @if (session('resultado'))
               <div class="alert alert-success" id="message">
               {{ session('resultado') }}
@@ -155,6 +155,21 @@
                  </table>
                <h5 class="text-center">{{ $classicacaos->links() }}</h5>
               </div>
+               @else
+
+                   <div class="alert alert-danger alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: block; margin-top: 30px;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong style="align-content: center;"><h5> Não foi encontrado nenhum registo nesta categoria!</h5></strong></div>
+                @endif
+                  <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 15px;" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    </div>
           </div>
         </div>
       </div>
@@ -202,7 +217,7 @@
               success:function(result){
 
                 
-             $('#id_sucesso_vazio').html('<p>Dados editados com sucesso.</p>')
+             $('#id_sucesso_vazio').html('<p>Dados actualizados com sucesso.</p>')
                $('#id_sucesso_vazio').show();
 
                setTimeout(function(){
@@ -214,7 +229,7 @@
               },
               error: function (result) {
               
-                 $('#id_erro').html('<p>Problemas na edicão de Dados</p>')
+                 $('#id_erro').html('<p>Problemas na actualização de Dados</p>')
                $('#id_erro').show();
                setTimeout(function(){
                 $('.id_erro').fadeOut(4000);
@@ -236,7 +251,7 @@
                success:function(result){
 
                 
-             $('#id_sucesso_vazios').html('<p>Dados editados com sucesso.</p>')
+             $('#id_sucesso_vazios').html('<p>Dados actualizados com sucesso.</p>')
                $('#id_sucesso_vazios').show();
 
                setTimeout(function(){

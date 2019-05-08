@@ -30,8 +30,8 @@
                             {{-- <input id="id_1" type="text" class="form-control" name="estado" placeholder="Quantidade" value="{{ old('estado') }}" required autofocus> --}} 
 
                             <select name="estado" id="id_1">
-                              <option value="Autorizado">Válido</option>
-                              <option value="Autorizado">Inválido</option>
+                              <option value="Autorizado">Valido</option>
+                              <option value="Autorizado">Invalido</option>
                             </select>                   
                         </div>
                     </div>
@@ -185,8 +185,8 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
-            <h1 style="padding: 20px;">Classificações por HVI por Validar</h1>
-           @if($classicacaos->count() >0)
+            <h1 style="padding: 20px;">Classificações por HVI Validadas</h1>
+          @if($classicacaos ->count() > 0)
                 <div class="table-responsive">
               <table class="table table-sc-ex">
               <thead>
@@ -218,7 +218,7 @@
                     <th> D.P</th>
                     <th> LAB</th>
                     <th> FAB</th> --}}
-                    {{-- <th> Opções</th>  --}}
+                    <th> Opcoes</th> 
                    
              
                    
@@ -243,7 +243,9 @@
                 <td>{{$clas->cg}}</td>
                 {{-- <td>{{$clas->cg}}</td> --}}
                 <td>{{$clas->trcount}}</td>
-             
+                <td>
+                  <a href="/aphvi/{{$clas->id}}" ><button  class="button-alt refuse">X</button></a>
+                </td>
                
 
                  </tr> 
@@ -254,12 +256,12 @@
           <h5 class="text-center">{{ $classicacaos->links() }}</h5>
 
        </div>
-         @else
+        @else
 
                    <div class="alert alert-danger alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: block; margin-top: 30px;">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong style="align-content: center;"><h5> Não foi encontrado nenhum registo nesta categoria!</h5></strong></div>
                 @endif
-         <div class="row">
+           <div class="row">
        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
        
             

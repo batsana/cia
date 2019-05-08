@@ -54,7 +54,7 @@ public function apagariam($id){
        $ent = Entidade::find($id);
         $user = User::find($ent->user_id);
 
-        $ent->numerunico = $request->input('numerunico');
+        // $ent->numerunico = $request->input('numerunico');
         $ent->telefone = $request->input('telefone');
         $ent->endereco = $request->input('endereco');
         $user->name = $request->input('name');
@@ -128,7 +128,7 @@ public function updategra(Request $request,$id){
 	->join('entidades','fabricas.entidade_id','=','entidades.id')
 	->join('users', 'fabricas.entidade_id', '=', 'users.id')
 		->where('fabricas.entidade_id','=', $id)
-		->select('users.name','fabricas.*')->get();
+		->select('users.name','fabricas.*','entidades.numerunico')->get();
 
 
 // $fabricas = Fabrica::query()->join('medicos','consultas.tipoMedico','=','medicos.area')
@@ -154,7 +154,7 @@ public function updategra(Request $request,$id){
 
     $users->name = $request->input('name');
 
-    $users->provincia = $request->input('provincia');
+    // $users->provincia = $request->input('provincia');
 
     $ent->update();
     $users->update();

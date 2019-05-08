@@ -9,7 +9,11 @@
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
             </div>
               <h1>Registo de Entidades</h1>
+
+   
+
               <div class="mb40" style="display: block;"></div>
+
               <form  class="form-horizontal" role="form" method="POST" action="{{ url('/salvamos') }}">
                     {{ csrf_field() }}
                          @if (session('resultado'))
@@ -19,6 +23,7 @@
                         @endif
   <input type="hidden" name="tipoRegisto" id="tipoRegisto" value="entidade">
 <input type="hidden" name="ff" id="ff" value="{{ @$resultado }}">
+
     <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="form-group ic-cmp-int">
@@ -110,7 +115,7 @@
             
              </div>
             <div class="nk-int-st">
-                 <input id="numerunico" type="text" class="form-control" name="numerunico" placeholder="Prefixo GS1" value="{{ old('numerunico') }}" required autofocus>
+                 <input id="numerunico" type="text" class="form-control hidden" name="numerunico" placeholder="Prefixo GS1">
                 {{--   <input id="numerunico" type="text" class="form-control" name="numerunico" placeholder="Prefixo GS1" value="{{ old('numerunico') }}" required autofocus>   --}}        
             </div>
         </div>
@@ -166,6 +171,32 @@
             </div>
         </div>
 </div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="form-group ic-cmp-int">
+            <div class="form-ic-cmp">
+            
+             </div>
+            <div class="nk-int-st">
+                <select  id="tipoEntidade" class="form-control" name="provincia"> 
+                           
+                           <option value="Maputo Cidade">Maputo Cidade</option>
+                            <option value="Maputo Provincia" >Maputo Provincia</option>
+                           <option value="Gaza" >Gaza</option>
+                           <option value="Inhambane" >Inhambane</option>
+                           <option value="Sofala" >Sofala</option> 
+
+                           <option value="Manica">Manica</option>
+                           <option value="Tete" >Tete</option>
+                           <option value="Nampula" >Nampula</option>
+                           <option value="Zambezia" >Zambezia</option>
+                            <option value="Niassa">Niassa</option>
+                           <option value="Cabo Delegado" >Cabo Delegado</option>
+                          
+                           {{-- <option value="fabrica" >Fábrica</option> --}}
+                        </select>     
+            </div>
+        </div>
+</div>
 </div>
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -176,20 +207,22 @@
             <div class="nk-int-st">
                 <button type="submit" class="button-alt grayb">Registar</button>
 
-                 <a  class="button-alt grayb" href="{{ url('/home') }}">Cancelar</a> 
+                 
                        
             </div>
         </div>
-    </div> 
-     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="form-group ic-cmp-int">
-            <div class="form-ic-cmp">
-         
-             </div>
-            <div class="nk-int-st">
-                
+    </div>
+    </div>
+    <div class="row"> 
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff;" href="{{ url('/gestao/entidade') }}">&laquo; Voltar</a> 
+   
+               {{--  <a  class="button-alt" href="{{ url('/gestao/entidade') }}">&laquo;Voltar</a>  --}}
                {{--  <a class="btn btn-warning notika-btn-warning" href="{{ url('/home') }}" style="background-color: #e1bee7; width: 50%;">Cancelar</a>  --}}         
-            </div>
+           
         </div>
     </div>
 
@@ -235,6 +268,20 @@
                 $('#tipoRegisto').val('entidade');
             }
 
+            if(valor=='companhia'){
+                // $('#selectCompanhia').removeClass('hidden');
+                $('#numerunico').removeClass('hidden');
+                // $('#conse_id').removeClass('hidden');
+                
+                // $('#tipoRegisto').val('fabrica');
+                // se for igua a fabrica o valor da selecao o registo sera da faribrica caso nao que seja igual a entidade
+            }else{
+                $('#numerunico').addClass('hidden');
+                // $('#matriz').addClass('hidden');
+                // $('#conse_id').addClass('hidden');
+                // $('#tipoRegisto').val('entidade');
+            }
+
         });
 
          valorGood = $('#ff').val();
@@ -253,9 +300,7 @@
                });
         }
      
-            document.getElementById("form-horizontal").onsubmit = function(){
-          location.reload(true);
-       } 
+           
 
        
     });

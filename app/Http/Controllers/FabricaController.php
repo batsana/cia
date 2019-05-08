@@ -30,14 +30,15 @@ class FabricaController extends Controller
      		
      	}
 
-       $user = User::create(['name' => $data['name'],'tipoEntidade' => $data['tipoEntidade'], 'email' => $data['email'], 'password' => bcrypt($data['password'])]);
+       $user = User::create(['name' => $data['name'],'tipoEntidade' => $data['tipoEntidade'], 'email' => $data['email'], 'provincia' => $data['provincia'], 'password' => bcrypt($data['password'])]);
 
         if($data->tipoRegisto !== 'fabrica'){
           Entidade::query()->create([
                 'endereco' => $data['endereco'],'telefone' => $data['telefone'],'numerunico' => $data['numerunico'],'user_id'=>$user->id ]);
 
-        }else{
-$fsa = Fabrica::query()->where('matrizfilial',$data['matrizfilial'] && 'numerunico',$data['numerunico'])->count();
+        }
+        else{
+$fsa = Fabrica::query()->where('matrizfilial',$data['matrizfilial'] && 'numerunico',$data['numerunico'])->where('entidade_id',$data['companhia_id'])->count();
         	
 
          if ($fsa > 0) {
@@ -87,7 +88,10 @@ $fsa = Fabrica::query()->where('matrizfilial',$data['matrizfilial'] && 'numeruni
 
  //////////////////////////////////////////atualizar
     public function update(Request $request,$id){
-
+     
+      
+      $f = Fabrica::query()->where('id',$id)->first()->entidade_id;
+  
       $resultado = "good";
       // $this->validate($request,['nome'=>'required','telefone'=>'required','endereco'=>'required']);
   $ido = $request['alg_id'];
@@ -98,8 +102,9 @@ $fsa = Fabrica::query()->where('matrizfilial',$data['matrizfilial'] && 'numeruni
         $fab->endereco = $request->input('endereco');
         $fab->update();
 
+        return redirect('/sua/'.$f.'/su')->with('resultado', 'Dados Atualizados com sucesso.');
 
-              return redirect('/listar/algudoeira')->with('resultado', 'Dados Atualizados com sucesso.'); 
+              // return redirect('/listar/algudoeira')->with('resultado', 'Dados Atualizados com sucesso.'); 
  
     }  
     public function updatall(Request $request,$id){
@@ -119,6 +124,7 @@ $fsa = Fabrica::query()->where('matrizfilial',$data['matrizfilial'] && 'numeruni
 
  /////////////////////////////apagar fabrica
     public function apagar($id){
+      $f = Fabrica::query()->where('id',$id)->first()->entidade_id;
        DB::table('fabricas')->where('id',$id)->delete();
        
        
@@ -128,7 +134,18 @@ $fsa = Fabrica::query()->where('matrizfilial',$data['matrizfilial'] && 'numeruni
   //   ->where('users.tipoEntidade','=','companhia')
   //   ->select('users.name','entidades.*'
   //     )->get();
-     return view('iam.fabricas',compact('fabricas')); 
+     // return view('iam.fabricas',compact('fabricas'));
+  return redirect('/sua/'.$f.'/su')->with('resultado', 'Dados Atualizados com sucesso.');
+      
+         
+    } 
+    public function apagarf($id){
+
+       DB::table('fabricas')->where('id',$id)->delete();
+ 
+
+  return redirect('listar/fabricas')->with('resultado', 'Dados Apagados com sucesso.');
+      
          
     }
 

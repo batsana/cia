@@ -10,6 +10,7 @@ use App\Iam;
 use App\Entidade;
 use App\Sno;
 use App\Esquema;
+use App\Classificacaohvi;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Getiqueta;
@@ -43,7 +44,9 @@ class HomeController extends Controller
               $referencia =0;
             }
           $var = Getiqueta::query()->where('estado','=','Novo')->count();
-            return view('iam.first',compact('var','referencia'));
+          $clas = Classificacaohvi::query()->where('estado','=','Novo')->count();
+          // $classicacaos = Classificacaohvi::query()->where('estado','Novo')
+            return view('iam.first',compact('var','referencia','clas'));
 
            
         } 

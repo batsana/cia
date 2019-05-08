@@ -22,11 +22,13 @@
 							<a href="{{ url('listar/algudoeira')}}"><img class="dash-image" src="/imgs/lista-algodoeiras.png" style="max-height: 200px;"></a>
                               
 							</div>
-
-
-							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-								<a href="{{ url('/listar/laboratorio') }}"><img src="/imgs/lista-laboratorios.png" style="max-height: 200px;"></a>
+                              <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="{{ url('/listar/fabricas') }}"><img src="/imgs/lista-fabricss.png" style="max-height: 200px;"></a>
+           
 							</div>
+							
+
+							
 
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
 								<a href="{{ url('/listar/grafica') }}"><img src="/imgs/lista-graficas.png" style="max-height: 200px;"></a>
@@ -34,10 +36,8 @@
 							</div>
 
 								<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-								<a href="{{ url('/listar/fabricas') }}"><img src="/imgs/lista-fabricss.png" style="max-height: 200px;"></a>
-           
+								<a href="{{ url('/listar/laboratorio') }}"><img src="/imgs/lista-laboratorios.png" style="max-height: 200px;"></a>
 							</div>
-							
 							
 						</div>	
 					

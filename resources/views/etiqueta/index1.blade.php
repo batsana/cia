@@ -87,11 +87,10 @@
 
 <div class="breadcomb-area">
     <div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
-     
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
-            <h1>Etiquetas Requisitadas</h1>
+            <h1>Etiquetas Processadas</h1>
        @if($cla->count() > 0)
                 <div class="table-responsive">
               <table class="table table-sc-ex">
@@ -103,7 +102,7 @@
                               {{-- <th>Gráfica</th> --}}
                               <th>Fábrica</th>
                               <th>Estado do Pedido</th>
-                              <th>Opções</th>   
+                              {{-- <th>Opções</th>    --}}
                         </thead>
 
                           <tbody>
@@ -115,23 +114,23 @@
                              {{-- <td>{{$fab->name}}</td> --}}
                             <td>{{$fab->nome}}</td>              
                             <td>{{$fab->estado}}</td>                 
-                           <td> 
-                            <button data-id="{{$fab->id}}" data-estado="{{$fab->estado}}" type="button"  class="button-alt grayb you" id="alt">Responder</button> 
+                           {{-- <td>  --}}
+                          {{--   <button data-id="{{$fab->id}}" data-estado="{{$fab->estado}}" type="button"  class="button-alt grayb you" id="alt">Responder</button> 
 
-                            <button data-prim="{{$fab->id}}" type="button"  class="button-alt grayb ref">Recusar</button>
-                           </td>              
+                            <button data-prim="{{$fab->id}}" type="button"  class="button-alt grayb ref">Recusar</button> --}}
+                           {{-- </td>               --}}
                           </tr>
                          @endforeach         
                     </tbody>
                  </table>
               <h5 class="text-center">{{ $cla->links() }}</h5>
               </div>
-                @else
+              @else
 
                    <div class="alert alert-danger alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: block; margin-top: 30px;">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong style="align-content: center;"><h5> Não foi encontrado nenhum registo nesta categoria!</h5></strong></div>
                 @endif
-                <div class="row">
+                    <div class="row">
        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
        
             
@@ -162,16 +161,16 @@
 
         if (valorGood == 'good') {
             $('#message').append('Dados Gravados com Sucesso.').addClass('alert-success').show();
-             // setTimeout(function(){
-             //    $('#message').fadeOut(7000);
-             //   });
+             setTimeout(function(){
+                $('#message').fadeOut(7000);
+               });
 
         } else if (valorGood == 'bad') {
              $('#message').append('Não foi possível Introduzir os Dados.').addClass('alert-danger').show();
 
-              // setTimeout(function(){
-              //   $('#message').fadeOut(4000);
-              //  });
+              setTimeout(function(){
+                $('#message').fadeOut(4000);
+               });
         }
      ////////////////////////////chamada do modal para upload.//////////////////////       
       

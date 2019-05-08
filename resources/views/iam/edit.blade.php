@@ -4,6 +4,12 @@
 
 <div class="breadcomb-area">
         <div class="container branco" style="padding: 20px 20px 40px 20px; border: 1px solid #79b85e; max-width: 1090px;">
+            @if (session('resultado'))
+                    <div class="alert alert-success" id="message">
+                  {{ session('resultado') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
+                     </div>
+                  @endif
 <h1>Actualizar Dados da Fábrica</h1>
          <div class="mb40" style="display: block;"></div>               
         <form method="post" action="{{ url('/fabrica/'.$fab->id)}}">

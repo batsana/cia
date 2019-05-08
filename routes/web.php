@@ -109,6 +109,7 @@ return view('etiqueta.create',compact('entidade','fabrica_id','ultmo'));
 
 Route::get('/apagarhvi/{id}','ClassificacaohviController@apag');
 Route::get('/contr/{id}','ContratoController@apag');
+Route::get('/factdell/{id}','FaturaController@apag');
 Route::get('/aphvi/{id}','ClassificacaohviController@apag');
 
 Route::get('/primeira/home', function () {
@@ -128,9 +129,20 @@ Route::get('/listar/etiqueta', function () {
          ->join('entidades', 'getiquetas.entidade_id', '=', 'entidades.id')
         ->join('fabricas', 'getiquetas.fabrica_id', '=', 'fabricas.id')
         // ->join('users', 'fabricas.user_id', '=', 'users.id')
+        ->where('getiquetas.estado', '=','novo')
          ->select('getiquetas.*','fabricas.nome')->paginate(10);
               
            return view('etiqueta.index',compact('cla','user'));	
+});
+Route::get('/listar/proce', function () {
+  $user = Auth()->user()->id;
+    $cla = DB::table('getiquetas')
+         ->join('entidades', 'getiquetas.entidade_id', '=', 'entidades.id')
+        ->join('fabricas', 'getiquetas.fabrica_id', '=', 'fabricas.id')
+        ->where('getiquetas.estado', '=','recusado')
+         ->select('getiquetas.*','fabricas.nome')->paginate(10);
+              
+           return view('etiqueta.index1',compact('cla','user')); 
 });
 
 
@@ -150,7 +162,7 @@ Route::get('/listar/classes', function () {
 Route::get('/listar/classesh', function () {
    $classicacaos = Classificacaohvi::query()->paginate(10);        
            
-   return view('classificacao.indexh', compact('classicacaos'));;
+   return view('classificacao.indexh', compact('classicacaos'));
 	
 });
 
@@ -163,7 +175,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/salvarEtiqueta','GetiquetaController@create');
 Route::post('/salvarEtiqueta','GetiquetaController@create');
+
 // Route::get('/salvacontra','ContratoController@criacao');
+
 Route::post('/salvacontra','ContratoController@criacao');
 
 // Route::get('/salvaesquema','EsquemaController@geraracao');
@@ -199,6 +213,7 @@ Route::get('/atualgrafica/{id}','EntidadeController@editadografica');
 
 Route::get('/editar/{id}/edit','FabricaController@edit');
 Route::get('/atualfun/{id}/atualfun','FuncionarioController@atualfuncionar');
+// Route::get('/edicaocontrato/{id}/upcontrato','ContratoController@upcontrato');
 
 Route::get('/editarall/{id}/editall','FabricaController@editall');
 
@@ -211,6 +226,7 @@ Route::get('/sua/{id}/su','EntidadeController@suas');
 Route::get('/detalhar/{id}/edit','FaturaController@editer');
 Route::get('/editarz/{id}/entrega','CertificadonacionalController@entrega');
 Route::put('iam/{id}','EntidadeController@updatiam');
+Route::get('edicaocontrato/{id}','ContratoController@upcontrato');
 Route::put('/funcioo/{id}','FuncionarioController@updatfuc');
 
 
@@ -231,6 +247,7 @@ Route::get('/hviii/{id}','ClassificacaohviController@apag');
 Route::get('/apagargrafica/{id}','EntidadeController@apagargra');
 
 Route::get('/apagarfabrica/{id}','FabricaController@apagar');
+Route::get('/apagarfabricas/{id}','FabricaController@apagarf');
 
 
 Route::get('/apagarclasse/{id}','ClassificacaoController@apagar');
@@ -278,7 +295,7 @@ Route::get('gerar/esquema', function () {
 	 ->join('entidades','contratos.entidade_id','=','entidades.id')
 	 // ->join('fabricas','contratos.fabrica_id','=','fabricas.id')
 		->select('entidades.*','contratos.*'
-			)->get();
+			)->orderBy('nrcontrato', 'desc')->limit(50)->get();
     return view('esquema.create',compact('entidade_id','contratos','class'));
   } else {
     // $entidade_id = $user->id
@@ -288,7 +305,7 @@ Route::get('gerar/esquema', function () {
    ->join('entidades','contratos.entidade_id','=','entidades.id')
    // ->join('fabricas','contratos.fabrica_id','=','fabricas.id')
     ->select('entidades.*','contratos.*'
-      )->orderBy('nrcontrato', 'desc')->get();
+      )->orderBy('nrcontrato', 'desc')->limit(50)->get();
     return view('esquema.create',compact('entidade_id','contratos','class'));
   }
 });
@@ -323,9 +340,15 @@ Route::get('ger/cont', function () {
 
  $entidades = Entidade::query()->where('user_id',$user)->first()->id;
 
+
+
  // $users  = Contrato::query()->where('entidade_id',$user->id)->get();
   // $users  = Contrato::query()->
-  $users  = Contrato::query()->where('entidade_id',$user)->get();
+
+ 
+  $users  = Contrato::query()->where('entidade_id',$entidades)->get();
+  // echo $users;
+  // exit;
   // ->join('entidades','contratos.entidade_id','=','entidades.id')
   // ->join('users','entidades.user_id','=','users.id')
   // ->where('entidades.user_id',$user->id)->get();
@@ -333,7 +356,7 @@ Route::get('ger/cont', function () {
 });
 
 Route::get('/listar/classesh', function () {
-   $classicacaos = Classificacaohvi::query()->paginate(10);
+   $classicacaos = Classificacaohvi::query()->where('estado','Novo')->paginate(10);
            
    return view('classificacao.indexh', compact('classicacaos'));
 	
@@ -358,7 +381,7 @@ Route::get('/list/funcionariofab', function () {
 
 	    // $funcionarios = DB::table('funcionarios')->where('entidade_id',$user)->get();
 
-        $funcionarios =  DB::table('funcionarios')->where('entidade_id',$user)->get();
+        $funcionarios =  DB::table('funcionarios')->where('entidade_id',$user)->paginate(10);
 
 
    return view('funcionario.index2', compact('funcionarios'));
@@ -366,10 +389,16 @@ Route::get('/list/funcionariofab', function () {
 });
 
 Route::get('/listar/classeshs', function () {
-   $classicacaos = Classificacaohvi::query()->paginate(10);
+   $classicacaos = Classificacaohvi::query()->where('estado','Novo')->paginate(10);
            
    return view('classificacao.indexhs', compact('classicacaos'));
 	
+});
+Route::get('/listar/classesh1', function () {
+   $classicacaos = Classificacaohvi::query()->where('estado','!=','Novo')->paginate(10);
+           
+   return view('classificacao.indexg', compact('classicacaos'));
+  
 });
 
 Route::get('/listar/classess', function () {
@@ -377,7 +406,7 @@ Route::get('/listar/classess', function () {
     ->join('entidades','classificacaos.entidade_id','=','entidades.id')
 	 ->join('users','entidades.user_id','=','users.id')
 	 ->join('fabricas','classificacaos.fabrica_id','=','fabricas.id')
-	 // ->where('entidades.user_id','=',auth()->user()->id)
+	 // ->where('classificacaos.id',500000)
 		->select('fabricas.nome','classificacaos.*','users.name')->paginate(10);
            
    return view('classificacao.ind', compact('classificacaos'));
@@ -404,7 +433,12 @@ Route::get('gestao/contratos', function () {
 //////////////////////////////////////////////////////////Certificados//////////////
 
 Route::get('gestao/cetificate', function () {
-	$esquemas = Esquema::all();
+  $f = Certificadoclasse::query()->pluck('esquema_id');
+
+	$esquemas = Esquema::query()->whereNotIn('id',$f)->get();
+
+  // echo $esquemas;
+  // exit;
     return view('certifyn.create',compact('esquemas'));
 });
 
@@ -417,7 +451,17 @@ Route::get('gestao/cetificadonacional', function () {
 //////////////////////////////fatiuras///////////////////////////////////////////////////////////////
 
 Route::get('/gestao/facturas', function () {
-	$nacional = Certificadonacional::all();
+
+  $f = Fatura::query()->pluck('nacionals_id');
+    // $t = str_replace("]", "", str_replace("[" , "" , $f));
+ // echo $f;
+  //exit;
+
+ $nacional =  DB::table('certificadonacionals')->whereNotIn('id',$f)->get();
+	// $nacional = Certificadonacional::query()->where('id',$t);
+
+  // echo $nacional;
+  // exit;
            return view('fatura.create',compact('nacional')); 
 });
 
@@ -463,24 +507,10 @@ Route::get('/ver/etiqueta', function () {
      $fun = Entidade::query()->where('user_id',$user->id)->first()->id;
      //  $fun = Funcionario::query()->where('fabrica_id',$fabrica_id)->first()->nome;
 
-          $classes = Getiqueta::query()->where('entidade_id',$fun)->get();
+          $classes = Getiqueta::query()->where('entidade_id',$fun)->paginate(10);
         
          }       
-        // $classes = Getiqueta::query()        
-        // ->join('fabricas', 'getiquetas.fabrica_id', '=', 'fabricas.id')
-        // ->join('funcionarios', 'getiquetas.entidade_id', '= 1', 'funcionarios.id')
-        // ->where('estado','=','Enviado')
-        // ->select('getiquetas.*','funcionarios.nome','fabricas.nome')->get();              
-        //    return view('etiqueta.indexf',compact('classes'));
- 
-
-        //  $classes = Getiqueta::query()        
-        // ->join('fabricas', 'getiquetas.fabrica_id', '=', 'fabricas.id')
-        // ->join('entidades', 'getiquetas.entidade_id', '=', 'entidades.id')
-        // // ->join('users', 'entidades.user_id', '=', 'users.id')
-        // ->join('users', 'entidades.user_id', '=', 'users.id')
-        // ->where('estado','=','Enviado')
-        // ->select('getiquetas.*','users.name','fabricas.nome')->get();              
+                      
            return view('etiqueta.indexf',compact('classes'));   
 });
 // 
@@ -490,7 +520,7 @@ Route::get('/listar/laboratorio', function () {
 	$entidade = Entidade::query()
 	->join('users','entidades.user_id','=','users.id')
 		->where('users.tipoEntidade','=','laboratorio')
-		->select('users.name','entidades.*')->get();
+		->select('users.name','entidades.*')->paginate(10);
 return view('iam.labora',compact('entidade'));	
 });
 
@@ -505,7 +535,7 @@ $userStr = str_replace('"]','', str_replace('["', '', $user));
      ->join('users','entidades.user_id','=','users.id')
       ->where('classificacaos.estado','=','naoclass')
       // ->where('entidades.user_id',$user)
-        ->select('fabricas.nome','users.name','classificacaos.*' )->get();	
+        ->select('fabricas.nome','users.name','classificacaos.*' )->paginate(10);	
 
          return view('classificacao.index', compact('classificacaos','userStr'));
 });
@@ -514,13 +544,18 @@ $userStr = str_replace('"]','', str_replace('["', '', $user));
 Route::get('listar/contrato', function () {
 	
 	$contrato = Contrato::query()->where('estado','=','Pendente')->paginate(10);	
-return view('contrato.list',compact('contrato'));	
+return view('contrato.listarHol',compact('contrato'));	
 });
 
 Route::get('listar/contratos', function () {
   
-  $contrato = Contrato::query()->where('estado','=','Homolgado')->paginate(10);  
+  $contrato = Contrato::query()->where('estado','=','Homologado')->paginate(10);  
 return view('contrato.list',compact('contrato')); 
+});
+Route::get('listar/contratosr', function () {
+  
+  $contrato = Contrato::query()->where('estado','=','Recusado')->paginate(10);  
+return view('contrato.listr',compact('contrato')); 
 });
 
 Route::get('cert/origem', function () {
@@ -553,8 +588,12 @@ return view('certinacional.index', compact('nacional'));
 
 
 Route::get('list/fatura', function () {
-	$faturas = Fatura::query()->paginate(10);	
+	$faturas = Fatura::query()->where('estado','Npaga')->paginate(10);	
 return view('fatura.index',compact('faturas'));	
+});
+Route::get('list/faturas', function () {
+  $faturas = Fatura::query()->where('estado','paga')->paginate(10); 
+return view('fatura.index1',compact('faturas')); 
 });
 
 Route::get('lista/esquema', function () {
@@ -563,7 +602,7 @@ $user = Auth()->user()->id;
 	//->join('entidades','esquemas.entidade_id','entidades.id')
 	->join('contratos','esquemas.contrato_id','contratos.id')
 	//->join('users','entidades.user_id','users.id')
-	//->where('entidades.user_id',4)
+	// ->where('esquemas.id',800000)
 	->select('contratos.*','esquemas.*')->paginate(10);
 return view('esquema.index',compact('esquemas'));	
 });
@@ -586,7 +625,7 @@ Route::get('/sua/{id}/su','EntidadeController@suas');
 Route::get('/listar/fabricas', function () {
 $fabricas = Fabrica::query()->join('entidades','fabricas.entidade_id','entidades.id')
 ->join('users','entidades.user_id','users.id')
-->select('users.name', 'fabricas.*')->paginate(10); 
+->select('users.name', 'fabricas.*','entidades.numerunico')->paginate(10); 
 
   return view('iam.fabricasall',compact('fabricas')); 
 

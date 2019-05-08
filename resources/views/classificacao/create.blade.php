@@ -29,6 +29,7 @@
               <div class="alert alert-success" id="message">
               {{ session('resultados') }}
                </div>
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
              @endif
     
     <div class="row">
@@ -177,10 +178,21 @@
     </div>
 </div>           
  </div> 
+  <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 15px;" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    </div>
  </div>              
                   <input type="hidden" name="fabrica_id" value="{!!$fabrica_id !!}">
                 </form>
             </div>
+
         </div>
         </div>
     </div>
@@ -194,9 +206,9 @@
 <script type="text/javascript">
     $(document).ready(function(){
    
-        setTimeout(function(){
-                $('#message').fadeOut(7000);
-               });
+        // setTimeout(function(){
+        //         $('#message').fadeOut(7000);
+        //        });
 
       $('#id_calm').on('submit','.calm',function(e){
            e.preventDefault();
@@ -210,9 +222,9 @@
               if (result.is_valid){
 
                $('#id_sucesso').show();
-               setTimeout(function(){
-                $('.id_sucesso').fadeOut(5000);
-               });
+               // setTimeout(function(){
+               //  $('.id_sucesso').fadeOut(5000);
+               // });
                  $(".calm")[0].reset();
               }
            
@@ -224,9 +236,9 @@
 
 
                $('#id_erro').show();
-               setTimeout(function(){
-                $('.id_erro').fadeOut(4000);
-               });
+               // setTimeout(function(){
+               //  $('.id_erro').fadeOut(4000);
+               // });
             }
         
            });

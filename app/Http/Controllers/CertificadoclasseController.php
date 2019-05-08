@@ -11,8 +11,17 @@ use App\Esquema;
 class CertificadoclasseController extends Controller
 {
       public function criar(Request $data){
+
+        // $u = $data['esquema_id'];
+
+       $f = Certificadoclasse::query()->where('ref',$data['ref'])->count();
+
+        if ($f > 0) {
+         return redirect('/gestao/cetificate')->with('resultado', 'A referência do esquema ja foi usada.'); 
+         exit;
+        }
     
-          Certificadoclasse::query()->create(['quantestenso' => $data['quantestenso'],'marcafardo' => $data['marcafardo'],'quantfardo' => $data['quantfardo'],'navio' => $data['navio'],'destino' => $data['destino'],'pesobruto' => $data['pesobruto'],'pesoliq' => $data['pesoliq'],'classif_id' => $data['classif_id'],'esquema_id' => $data['esquema_id']]);
+          Certificadoclasse::query()->create(['ref' => $data['ref'],'navio' => $data['navio'],'destino' => $data['destino'],'classif_id' => $data['classif_id'],'esquema_id' => $data['esquema_id']]);
 
 
 

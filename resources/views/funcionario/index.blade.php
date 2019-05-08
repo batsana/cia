@@ -7,14 +7,16 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
-            <h1>Lista de Funcinários</h1>
+            <h1>Lista de Funcionários</h1>
+            @if($funcionarios->count() > 0)
                @if (session('resultado'))
               <div class="alert alert-success" id="message">
               {{ session('resultado') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
                </div>
              @endif
     <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_sucesso_vazio" style="display: none;">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Não existem funcionarios resistados no sistema.</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Não existem funcionários registados no sistema.</strong>
         </div>
      <div class="table-responsive">
 
@@ -51,7 +53,24 @@
            </tbody>
         </table>
           <h5 class="text-center">{{$funcionarios->links() }}</h5>
-      </div></div>
+      </div>
+                  @else
+
+                   <div class="alert alert-danger alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: block; margin-top: 30px;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong style="align-content: center;"><h5> Não foi encontrado nenhum registo nesta categoria!</h5></strong></div>
+                @endif           
+      <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff;margin-bottom: 15px" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    </div>  
+      
+    </div>
       </div>
     </div>
   </div>
@@ -68,24 +87,24 @@
 
       $(document).ready(function(){
 
-      	setTimeout(function(){
-                $('#message').fadeOut(7000);
-               });
+      	// setTimeout(function(){
+       //          $('#message').fadeOut(7000);
+       //         });
       	
          valorGood = $('#ff').val();
 
         if (valorGood == 'good') {
             $('#message').append('Dados Gravados com Sucesso.').addClass('alert-success').show();
-             setTimeout(function(){
-                $('#message').fadeOut(7000);
-               });
+             // setTimeout(function(){
+             //    $('#message').fadeOut(7000);
+             //   });
 
         } else if (valorGood == 'bad') {
              $('#message').append('Não foi possível Introduzir os Dados.').addClass('alert-danger').show();
 
-              setTimeout(function(){
-                $('#message').fadeOut(4000);
-               });
+              // setTimeout(function(){
+              //   $('#message').fadeOut(4000);
+              //  });
         }
      
          var roCount = $('#lista > tbody > tr').length;

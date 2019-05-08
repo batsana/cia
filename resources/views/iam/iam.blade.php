@@ -7,10 +7,12 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
-            <h1>Iam nas Provicias</h1>
+            <h1>O IAM nas Províncias</h1>
+            @if($entidade->count() > 0)
               @if (session('resultado'))
               <div class="alert alert-success" id="message">
               {{ session('resultado') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
                </div>
              @endif
           
@@ -19,13 +21,13 @@
                 
               <thead>
                     <tr>
-                    <th>Iam Provincial</th>
-                    <th>Provincia</th>
+                    <th>IAM Provincial</th>
+                    <th>Província</th>
                     
                     <th>Telefone</th>
-                    <th>Endereco</th>
+                    <th>Endereço</th>
                     
-                     <th>Opcoes</th>
+                     <th>Opções</th>
                       </tr>
               </thead>
                 <tbody>
@@ -40,7 +42,7 @@
                            
                 <td> <a href="{{ url('/atualiam/'.$fab->id.'/editiam')}}" class="button-alt grayb">Editar</a>
    
-               <a href="/apagariam/{{$fab->id}}" class="button-alt">X</a>
+               {{-- <a href="/apagariam/{{$fab->id}}" class="button-alt">X</a> --}}
              </td>
 
               </tr>
@@ -51,6 +53,21 @@
         <h5 class="text-center">{{ $entidade->links() }}</h5>
 
       </div>
+       @else
+
+                   <div class="alert alert-danger alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: block; margin-top: 30px;">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong style="align-content: center;"><h5>Não foi encontrado nenhum registo nesta categoria!</h5></strong></div>
+                @endif
+          <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 15px;" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    </div>
       </div>
     </div>
   </div>
@@ -62,9 +79,9 @@
  <script  type="text/javascript">
 
       $(document).ready(function(){
-      	setTimeout(function(){
-                $('#message').fadeOut(7000);
-               });
+      	// setTimeout(function(){
+       //          $('#message').fadeOut(7000);
+       //         });
 
       });
       

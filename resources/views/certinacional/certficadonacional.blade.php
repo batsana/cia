@@ -14,7 +14,7 @@
                 <div class="form-element-list" id="id_bee">            
             
             
-             <form class="form-horizontal  bee"  method="POST"">
+             <form class="form-horizontal  bee"  method="POST">
                                     {{ csrf_field() }}
 
            <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: none;">
@@ -134,6 +134,16 @@
                              </div>
                             <div class="nk-int-st">
                               <input type="text" name="marcafardo"  class="form-control" placeholder="Marca de fardo" value="{{ old('marcafardo') }}">                 
+                            </div>
+                        </div>
+                  </div>  
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                       <div class="form-group ic-cmp-int">
+                            <div class="form-ic-cmp">
+                            {{-- <i class="notika-icon notika-support"></i> --}}
+                             </div>
+                            <div class="nk-int-st">
+                              <input type="text" name="ref"  class="form-control" placeholder="Referênia do fardo" value="{{ old('marcafardo') }}">                 
                             </div>
                         </div>
                   </div>

@@ -1,24 +1,26 @@
 @extends('layouts.index')
 @section('content')
- <div class="row">
-     <div class="form-element-area">
-          <div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
+<div class="breadcomb-area">
+    <div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="breadcomb-list">
         <div class="form-element-list" id="id_barraas">            
             <h1>Geração de Esquema de Embarque</h1>
 
              <div class="alert alert-success alert-dismissible id_sucesso" role="alert" id="id_sucesso" style="display: none;">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong>Esquema  Gerado com Sucesso!</strong> &nbsp;
-        <strong>Deseja adicionar mais fardos para o cliente?</strong><a href="{{ url('/home') }}"><u> Não </u></a>&nbsp;<a href="" data-dismiss="alert" aria-label="Close"><u> Sim</u></a>
+        <strong>Deseja adicionar mais fardos?</strong><a href="{{ url('/home') }}"><u> Não </u></a>&nbsp;<a href="" data-dismiss="alert" aria-label="Close"><u> Sim</u></a>
    </div>
    <div class="alert alert-danger alert-dismissible id_erro" role="alert" id="id_erro" style="display: none;" >
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Problemas na Geração do Esquema </strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Problemas na Geração do Esquema. Por favor, tente novamente.</strong>
    </div>   
 
    <div class="alert alert-danger alert-dismissible id_reps" role="alert" id="id_reps" style="display: none; background-color:" >
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong>Por favor adicione os codigos de fardos antes de submeter</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong>Por favor, submeta primeiro os códigos dos fardos adicionados, antes de adicionar outros.</strong>
    </div>
    <div class="alert alert-danger alert-dismissible id_rep" role="alert" id="id_rep" style="display: none; background-color:" >
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong> Por favor submeta os codigos adicionados</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button> <strong>Por favor, submeta primeiro os códigos dos fardos adicionados, antes de adicionar outros.</strong>
    </div> 
             
               <form class="form-horizontal barras">
@@ -39,14 +41,14 @@
                 {{-- <i class="notika-icon notika-mail"></i> --}}
             </div>
             <div class="nk-int-st">
-              {{--  <input  type="text" class="form-control" placeholder="Lote dos fardos" name="lote"> --}}
                           <select required id="contrato_id" class="form-control"  name="contrato_id"> 
                             <option value="">Nr. do Contrato</option>
                             @foreach($contratos as $c)
-                              <option value="{{$c->id}}">{{$c->nrcontrato}}</option>
+                              <option value="{{$c->id}}">{{$c->id}}</option>
                             @endforeach
-                        </select>            </div>
-        </div>
+                        </select>            
+                      </div>
+                </div>
       </div>
 
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -57,11 +59,11 @@
             <div class="nk-int-st">
 
             <select  id="id_tipo" class="form-control"  name="tipo"> 
-                <option value="0">TIPO EXTRA</option>
-                <option value="1">TIPO I</option>
-                <option value="2">TIPO II</option>
-                <option value="3">TIPO III</option>
-                <option value="4">TIPO IV</option>
+                <option value="0">Tipo EXTRA</option>
+                <option value="1">Tipo I</option>
+                <option value="2">Tipo II</option>
+                <option value="3">Tipo III</option>
+                <option value="4">Tipo IV</option>
               
             
           </select>  
@@ -70,13 +72,27 @@
         </div>
     </div>
 
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+   {{--  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         <div class="form-group ic-cmp-int">
             <div class="form-ic-cmp">
             </div>
             <div class="nk-int-st">
                <table><tr><td style="color: #ababab; font-size: 14px; padding-right:5px;">Comprimento da Fibra: </td><td><input style="width: 97%" type="number" disabled value="0" disabled class="form-control" placeholder="Comprimento da Fibra" id="compia">
                <input type="hidden" value="0" name="comprimentofibra" id="compisa"  class="form-control" placeholder="Comprimento da Fibra"></td></tr></table>
+               
+            </div>
+        </div>
+    </div> --}}
+
+       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="form-group ic-cmp-int">
+            <div class="form-ic-cmp">
+            </div>
+            <div class="nk-int-st">
+               <table><tr><td style="color: #ababab; font-size: 14px; padding-right:5px;"></td><td>
+                <input style="width: 97%" id="id_comprimento" type="number" name="comprimento" class="form-control" placeholder="Comprimento da Fibra" id="compia">
+               
+             </td></tr></table>
                
             </div>
         </div>
@@ -190,8 +206,19 @@
 
                 </form>
             </div>
+              <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 15px;" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    </div>
         </div>
         </div>
+    </div>
     </div>
 </div>
 @endsection
@@ -214,6 +241,7 @@
          dataType:'json',
          data:{
             'quantidade':$('#id_quantidade').val(), 
+            'comprimento':$('#id_comprimento').val(), 
             'lote':$('#id_lote').val(),
             'tipo':$('#id_tipo').val()
          },
@@ -224,31 +252,32 @@
 
         if (results == 0) {
           // alert ('Nao existem fardos disponiveis com as caracteristicas pretendidas');
-           $('#id_erro').html('<p>Nao existem fardos disponiveis com as caracteristicas pretendidas</p>')
+           $('#id_erro').html('<p>Nao existem fardos disponíveis com as características pretendidas.</p>')
                $('#id_erro').show();
-               setTimeout(function(){
-                $('.id_erro').fadeOut(7000);
-               });
+               // setTimeout(function(){
+               //  $('.id_erro').fadeOut(7000);
+               // });
           return;
         } else {
 
           if (results.z !== 1) {
        
           // alert ('Existem apenas ' + results + " fardos disponiveis com as caracteristicas pretendidas");
-          $('#id_erro').html('<p>Fardos disponiveis com as caracteristicas pretendidas</p>')
+          $('#id_erro').html('<p> Existe(m) apenas ' + results + " fardo(s) disponível(is) com as características pretendidas.</p>");
                $('#id_erro').show();
-               setTimeout(function(){
-                $('.id_erro').fadeOut(7000);
-               });
+               // setTimeout(function(){
+               //  $('.id_erro').fadeOut(7000);
+               // });
           return;
           }
         }
         
+
           if ($('#adicionados').val().length !== 0) {
               $('#id_rep').show();
-               setTimeout(function(){
-                $('.id_rep').fadeOut(5000);
-               });
+               // setTimeout(function(){
+               //  $('.id_rep').fadeOut(5000);
+               // });
             return;
           }else{
              //substrVal1 = [];
@@ -302,11 +331,11 @@
            error:function(results){
               
               // alert('bag');
-               $('#id_erro').html('<p>Problemas na adição de fardos</p>')
+               $('#id_erro').html('<p>Problemas na adição de fardos.</p>')
                $('#id_erro').show();
-               setTimeout(function(){
-                $('.id_erro').fadeOut(4000);
-               });
+               // setTimeout(function(){
+               //  $('.id_erro').fadeOut(4000);
+               // });
 
             }
           });
@@ -331,22 +360,31 @@
               
 
               if (result.quantia){
-               console.log(result);
-               $('#id_erro').html('<p>Verifique o estado do contrato selecionado</p>')
+               // console.log(result);
+               $('#id_erro').html('<p>As quantidades inseridas estao acima do indicado.</p>')
                $('#id_erro').show();
-               setTimeout(function(){
-                $('.id_erro').fadeOut(4000);
-               });
+               // setTimeout(function(){
+               //  $('.id_erro').fadeOut(4000);
+               // });
               }
+            
 
+              if (result.status){
+               // console.log(result);
+               $('#id_erro').html('<p>O contrato seleccionado não está homologado.</p>')
+               $('#id_erro').show();
+               // setTimeout(function(){
+               //  $('.id_erro').fadeOut(4000);
+               // });
+              }
             
               if (result.statusa){
-                console.log(result);
-               $('#id_erro').html('<p>O presente Contrato contem faturas não pagas</p>')
+                // console.log(result);
+               $('#id_erro').html('<p>O contrato seleccionado contém pelo menos 1 factura não paga.</p>')
                $('#id_erro').show();
-               setTimeout(function(){
-                $('.id_erro').fadeOut(4000);
-               });
+               // setTimeout(function(){
+               //  $('.id_erro').fadeOut(4000);
+               // });
               }
              
             },

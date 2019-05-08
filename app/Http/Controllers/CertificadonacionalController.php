@@ -22,7 +22,7 @@ class CertificadonacionalController extends Controller
 
         $dados;
         
-          Certificadonacional::query()->create(['marcafardo' => $data['marcafardo'],'quantfardo' => $data['quantfardo'],'destino' => $data['destino'],'pesobruto' => $data['pesobruto'],'pesoliq' => $data['pesoliq'],'certif_id' => $data['certif_id'],'contrato_id' => $data['contrato_id']]);
+          Certificadonacional::query()->create(['marcafardo' => $data['marcafardo'],'quantfardo' => $data['quantfardo'],'destino' => $data['destino'],'pesobruto' => $data['pesobruto'],'pesoliq' => $data['pesoliq'],'certif_id' => $data['certif_id'],'contrato_id' => $data['contrato_id'],'ref' => $data['ref']]);
 
       $dados['is_valid']= true;
       return value($dados);

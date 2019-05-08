@@ -12,12 +12,12 @@
 
 
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-							<a title="Geracao dos Contratos " href="{{ url('ger/cont') }}"><img class="dash-image" src="/imgs/gestao_contratos.png" style="max-height: 200px;"></a>
+							<a title="Geracao dos Contratos " href="{{ url('ger/cont') }}"><img class="dash-image" src="/imgs/criar-contratos.png" style="max-height: 200px;"></a>
                               
 							</div>
 
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-							<a title="Listas de Resultados da classificacao por M/V" href="{{ url('/listar/classess') }}"><img class="dash-image" src="/imgs/resultados-classif.png" style="max-height: 200px;"></a>
+							<a title="Listas de Resultados da classificacao por M/V" href="{{ url('/listar/classess') }}"><img class="dash-image" src="/imgs/classific_visual.png" style="max-height: 200px;"></a>
                               
 							</div>
 

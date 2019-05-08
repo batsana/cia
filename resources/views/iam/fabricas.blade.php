@@ -3,9 +3,17 @@
 @section('content')
   <div class="breadcomb-area">
     <div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
+
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="breadcomb-list">
+              @if (session('resultado'))
+                    <div class="alert alert-success" id="message">
+                  {{ session('resultado') }}
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
+                     </div>
+
+                  @endif
             <h1>Lista de Fábricas da Algodoeira  "<?php $i=0; foreach($fabricas as $fab) { if ($i<1) { echo $fab->name;}$i++;}  ?>"</h1>
                <form>
                  
@@ -73,16 +81,16 @@
 
         if (valorGood == 'good') {
             $('#message').append('Dados Gravados com Sucesso.').addClass('alert-success').show();
-             setTimeout(function(){
-                $('#message').fadeOut(7000);
-               });
+             // setTimeout(function(){
+             //    $('#message').fadeOut(7000);
+             //   });
 
         } else if (valorGood == 'bad') {
              $('#message').append('Não foi possível Editar os Dados.').addClass('alert-danger').show();
 
-              setTimeout(function(){
-                $('#message').fadeOut(4000);
-               });
+              // setTimeout(function(){
+              //   $('#message').fadeOut(4000);
+              //  });
         }
      
             document.getElementById("form-horizontal").onsubmit = function(){

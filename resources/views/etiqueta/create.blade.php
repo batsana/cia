@@ -21,6 +21,7 @@
            @if (session('resultado'))
     <div class="alert alert-success" id="message">
         {{ session('resultado') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
     </div>
 @endif
          <div class="row">
@@ -97,9 +98,19 @@
 <div class="row" style="padding: 0 20px 0 20px">
   <div class="alert alert-warning"><strong>Atenção:</strong> Esta operação poderá durar algum tempo caso o número de série atinja 5000.</div>
 </div>
-
+ <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 15px;" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    </div>
 
 </div>
+
     </div>
  
 </div>
@@ -109,9 +120,9 @@
     $(document).ready(function(){
 
        
-              setTimeout(function(){
-                $('#message').fadeOut(7000);
-               });
+              // setTimeout(function(){
+              //   $('#message').fadeOut(7000);
+              //  });
 
         
     });

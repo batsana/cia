@@ -15,6 +15,7 @@
                 @if(session('success'))
                 <p class="alert-success">
                    {{session('success')}} 
+                   
                 </p>
                 @endif
               <form action="{{url('/salvarClassificacao')}}" method="post">

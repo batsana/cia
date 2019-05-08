@@ -31,24 +31,38 @@
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
 								<a href="{{ url('listar/classes') }}"><img src="imgs/classific_visual.png" style="max-height: 200px;"></a>
 							</div>
-							
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-								<a href="{{ url('gestao/cetificate') }}"><img src="imgs/cert-orgiem-classif.png" style="max-height: 200px;"></a>
+								<div style="position: absolute; background-color: #fa3e3e; border-radius: 4px; min-width: 20px; min-height: 20px; margin-top: 10px; margin-left: 75px;">
+								<span style="display: inline-block; max-height: 20px; margin-left: 25%; color:#fff; font-weight: bold;">{{$clas}}
+								</span>
+								</div>
+								<a href="{{ url('listar/classesh') }}"><img src="imgs/classif-por-HVI-por-valid.png" style="max-height: 200px;"></a>
            
 							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="{{ url('listar/classesh1') }}"><img src="imgs/classif-por-HVI-valid.png" style="max-height: 200px;"></a>
+           
+							</div>
+							
+							
 
 								<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
 								<a href="{{ url('listar/iam') }}"><img src="imgs/IAM-provincial.png" style="max-height: 200px;"></a>
            
 							</div>
 						
-							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-								<a href="{{ url('listar/classesh') }}"><img src="imgs/classif-por-HVI.png" style="max-height: 200px;"></a>
+							
+							
+						</div>	
+						<div class="row">
+                               <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+								<a href="{{ url('gestao/cetificate') }}"><img src="imgs/cert-orgiem-classif.png" style="max-height: 200px;"></a>
            
 							</div>
-							
-						</div>	<div class="row">
-
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+							<a title="Gestão de Entidades" href="{{ url('cert/origem') }}"><img class="dash-image" src="imgs/ger-cert-orig-nacional.png" style="max-height: 200px;"></a>
+                              
+							</div>
 
 
 							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -64,7 +78,7 @@
 
   							@if (auth()->user()->nivel !== 1)
 							 <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" >
-								<a href="{{ url('gerar/funcionario') }}"><img src="/imgs/registo-entidades.png" style="max-height: 200px;"></a>
+								<a href="{{ url('gerar/funcionario') }}"><img src="/imgs/registo-funcionarios.png" style="max-height: 200px;"></a>
                               
 							</div> 
 

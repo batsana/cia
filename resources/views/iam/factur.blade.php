@@ -16,7 +16,11 @@
                               
 							</div>
 							<div class=" col-xs-6 col-sm-4 col-md-3 col-lg-2">
-							<a href="{{ url('list/fatura')}}"><img class="dash-image" src="/imgs/lista-facturas.png" style="max-height: 200px;"></a>
+							<a href="{{ url('list/fatura')}}"><img class="dash-image" src="/imgs/lista-facturas-n-pagas.png" style="max-height: 200px;"></a>
+                              
+							</div>
+							<div class=" col-xs-6 col-sm-4 col-md-3 col-lg-2">
+							<a href="{{ url('list/faturas')}}"><img class="dash-image" src="/imgs/lista-facturas-pagas.png" style="max-height: 200px;"></a>
                               
 							</div>
 						</div>

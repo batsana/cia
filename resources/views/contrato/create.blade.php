@@ -1,8 +1,10 @@
 @extends('layouts.index')
 @section('content')
- <div class="breadcomb-area">
-        <div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
-            <div class="row">
+   <div class="breadcomb-area">
+    <div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="breadcomb-list">
 
 <div class="form-element-list" id="id_bero">  
    <form class="form-horizontal bero" action="{{ url('/salvacontra') }}" method="post">
@@ -19,19 +21,36 @@
 <h1>Introdução de Dados de Contrato</h1>
     
                             @if (session('resultado'))
-                            <div class="alert alert-danger" id="message">
-                                  <h4>   {{ session('resultado') }} </h4>
+                            <div class="alert alert-success" id="message">
+                                  <h5>   {{ session('resultado') }} </h5>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
+                             </div>
+
+                            @endif 
+                            @if (session('resulta'))
+                            <div class="alert alert-success" id="message">
+                                  <h5>   {{ session('resulta') }} </h5>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
+                             </div>
+                            @endif
+
+                            @if (session('resultados'))
+                            <div class="alert alert-success" id="message">
+                                  <h5>   {{ session('resultados') }} </h5>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
                              </div>
                             @endif
 
                             @if (session('resultadob'))
                             <div class="alert alert-danger" id="message">
                                   <h4>   {{ session('resultadob') }} </h4>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
                              </div>
                             @endif
                             @if (session('resultadof'))
                             <div class="alert alert-success" id="message">
                                   <h4>   {{ session('resultadof') }} </h4>
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><i class="notika-icon notika-close"></i></span></button>
                              </div>
                             @endif
     <div class="row">
@@ -218,7 +237,7 @@
             {{-- <i class="notika-icon notika-support"></i> --}}
              </div>
             <div class="nk-int-st">
-                 <input id="password" type="password" class="form-control" placeholder="Senha" name="password" required>
+                 <input id="password" type="password" class="form-control" placeholder="Senha" name="password">
                 @if ($errors->has('password'))
                 <span class="help-block"> <strong>{{ $errors->first('password') }}</strong> </span>
                 @endif           
@@ -248,7 +267,7 @@
              </div>
             <div class="nk-int-st">
 
-                   <input id="email" type="text" class="form-control" placeholder="E-Mail" name="email" value="{{ old('email') }}" required>
+                   <input id="email" type="text" class="form-control" placeholder="E-Mail" name="email" value="{{ old('email') }}">
 
                         @if ($errors->has('email'))
                             <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span>
@@ -266,7 +285,7 @@
              </div>
             <div class="nk-int-st">
                
-                  <input id="password-confirm" type="password" class="form-control" placeholder="Confirmar Senha" name="password_confirmation" required>      
+                  <input id="password-confirm" type="password" class="form-control" placeholder="Confirmar Senha" name="password_confirmation">      
             </div>
         </div>
     </div> 
@@ -285,7 +304,7 @@
                 <select  id="contrato_id" class="form-control"  name="contrato_id"> 
                             <option value="0">Seleccionar Clientes Existentes</option>
                             @foreach($users as $c)
-                              <option value="{{$c->id}}">{{$c->consignatario}}</option>
+                              <option value="{{$c->user_id}}">{{$c->consignatario}}</option>
                             @endforeach
                         </select>           
                    </div>
@@ -309,13 +328,27 @@
                        
             </div>
         </div>
+        </div>
     </div>
+    <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 5px;" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    </div>
+    {{-- </div> --}}
   </div>
 
 
    
                 </form>
+
             </div>
+
         </div>
         </div>
     </div>
@@ -325,9 +358,9 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-          setTimeout(function(){
-                $('#message').fadeOut(7000);
-               });
+          // setTimeout(function(){
+          //       $('#message').fadeOut(7000);
+          //      });
 
 
       $('#contrato_id').change(function(){  

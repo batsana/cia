@@ -1,14 +1,11 @@
 @extends('layouts.index')
 @section('content')
 
-
-<div class="breadcomb-area">
-		<div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
-			<div class="row">
-				
-				{{-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> --}}
-					<div class="breadcomb-list">
-						<div class="row">
+  <div class="breadcomb-area">
+    <div class="container branco" style="border: 1px solid #79b85e; max-width: 1090px;">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="breadcomb-list">
 
 
 
@@ -117,19 +114,34 @@
 
                                                              <a class="button-alt grayb" href="{{ url('/home') }}" >&laquo; Voltar</a>     
 											            </div>
+
 											        </div>
+
 											    </div>
+
 									       </div>  
-									           
+									            <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff;margin-bottom: -15px" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    </div>  
 									 </form>
 							      </div>
 													
-							
+						
 						</div>
 					
 					</div>
+
 				</div>
+					    
 			</div>
+
 		</div>
 
 
@@ -156,9 +168,9 @@
               if (result.is_valid){
 
                $('#id_sucesso').show();
-               setTimeout(function(){
-                $('.id_sucesso').fadeOut(7000);
-               });
+               // setTimeout(function(){
+               //  $('.id_sucesso').fadeOut(7000);
+               // });
                 $(".fun")[0].reset();
               }
               
@@ -168,9 +180,9 @@
 
 
                $('#id_erro').show();
-               setTimeout(function(){
-                $('.id_erro').fadeOut(7000);
-               });
+               // setTimeout(function(){
+               //  $('.id_erro').fadeOut(7000);
+               // });
             }
         
            });

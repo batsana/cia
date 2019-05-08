@@ -27,7 +27,7 @@ class DocController extends Controller
         $certifyc = Certificadoclasse::query()
       ->join('esquemas','certificadoclasses.esquema_id','=','esquemas.id')
       ->join('contratos','esquemas.contrato_id','=','contratos.id')
-        // ->where('users.tipoEntidade','=','laboratorio')
+        // ->where('certificadoclasses.id',30000)
       ->select('contratos.consignatario','certificadoclasses.*')->get();
 
 

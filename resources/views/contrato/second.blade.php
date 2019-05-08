@@ -25,6 +25,11 @@
 							<a href="{{ url('listar/contratos')}}"><img class="dash-image" src="/imgs/lista-contratos-h.png" style="max-height: 200px;"></a>
                               
 							</div>
+							<div class=" col-xs-6 col-sm-4 col-md-3 col-lg-2">
+							
+							<a href="{{ url('listar/contratosr')}}"><img class="dash-image" src="/imgs/lista-contratos-nao-h.png" style="max-height: 200px;"></a>
+                              
+							</div>
 						</div>
 
 

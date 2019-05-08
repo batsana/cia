@@ -27,12 +27,14 @@ class EsquemaController extends Controller
      $act = $request['adi'];
      $fr = $request['adia'];
        
+       $act = ltrim($act, ",");
+       $act = explode(",", $act);
 
-      // echo $fr;
-      // exit;
+      //var_dump($act);
+      //exit;
                 
 
-          Classificacao::whereIn('id', $f)->update(['estadovend' => "v"]);
+          Classificacao::whereIn('id', $act)->update(['estadovend' => "v"]);
      
 
           $dados;
@@ -43,6 +45,11 @@ class EsquemaController extends Controller
          
          
           $contrato = Contrato::find($request->contrato_id);
+
+
+          // echo $contrato->estado;
+          // exit;
+
           $contrato->quantfibra = $contrato->quantfibra - $request['quantidade'];
           $contrato->update();
 
@@ -137,6 +144,7 @@ class EsquemaController extends Controller
            $cont = $request['cont'];
        $lote = $request['lote'];
        $q = $request['quantidade'];
+       $com = $request['comprimento'];
        $tip= $request['tipo'];
 
         $user = Auth()->user();
@@ -160,7 +168,7 @@ class EsquemaController extends Controller
 
         }
 
-     $cl= Classificacao::query()->where('lote','=',$lote)->where('tipo',$tip)->where('estadovend','=','nv')->limit($q)->get()->count();
+     $cl= Classificacao::query()->where('lote','=',$lote)->where('comprimento','=',$com)->where('tipo',$tip)->where('estadovend','=','nv')->limit($q)->get()->count();
 
 if ($cl < $q) {
 
@@ -173,7 +181,7 @@ if ($cl < $q) {
           } 
 
         } else {
- $cl= Classificacao::query()->where('lote','=',$lote)->where('tipo',$tip)->limit($q)->get();
+ $cl= Classificacao::query()->where('lote','=',$lote)->where('comprimento','=',$com)->where('tipo',$tip)->limit($q)->get();
  
        return response()->json(array('dados'=>$cl, 'z'=>1));
 

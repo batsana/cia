@@ -138,6 +138,17 @@
            </table>
            <h5 class="text-center">{{ $qualify->links() }}</h5>
        </div>
+          <div class="row">
+       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+       
+            
+              <div style="border-top: 1px solid #df822a; margin-top: 24px; padding-top: 10px;">
+      <a  class="button-alt" style="float: right; color: #fff; margin-bottom: 15px;" href="{{ url('/home') }}">&laquo; Voltar</a>          
+           
+        </div>
+    </div>
+    {{-- </div> --}}
+    </div>
              </div>
            </div>
         </div>

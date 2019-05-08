@@ -15,6 +15,11 @@
 							<a href="{{ url('listar/etiqueta')}}"><img class="dash-image" src="/imgs/etiquetas-requisitadas.png" style="max-height: 200px;"></a>
                               
 							</div>
+
+							<div class=" col-xs-6 col-sm-4 col-md-3 col-lg-2">
+							<a href="{{ url('listar/proce')}}"><img class="dash-image" src="/imgs/etiquetas-processadas.png" style="max-height: 200px;"></a>
+                              
+							</div>
 							
 						</div>
 						
